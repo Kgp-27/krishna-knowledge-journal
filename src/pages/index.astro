@@ -1,17 +1,61 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import PillarCard from "../components/PillarCard.astro";
 ---
 
 <BaseLayout title="Krishna's Knowledge Journal">
 
-  <main class="container">
+  <Hero />
 
-    <h1>Krishna's Knowledge Journal</h1>
+  <Section
+    title="Explore the Library"
+    description="Explore the five permanent disciplines that form the foundation of Krishna's Knowledge Journal."
+  >
+
+    <div class="pillar-grid">
+
+      <PillarCard
+        title="Finance"
+        description="Money, investing, corporate finance and financial markets."
+      />
+
+      <PillarCard
+        title="Economics"
+        description="Microeconomics, macroeconomics and economic thought."
+      />
+
+      <PillarCard
+        title="Indian Banking"
+        description="The RBI, commercial banks, regulation and monetary systems."
+      />
+
+      <PillarCard
+        title="Taxation"
+        description="Direct taxes, indirect taxes and public finance."
+      />
+
+      <PillarCard
+        title="History"
+        description="Economic history, financial history and institutions."
+      />
+
+    </div>
+
+  </Section>
+
+  <Section
+    title="Latest Articles"
+    description="Articles will automatically appear here as the journal grows."
+  >
 
     <p>
-      Learn. Think. Understand.
+      The journal is currently under development.
+The first articles will appear here soon.
     </p>
 
-  </main>
+  </Section>
 
 </BaseLayout>

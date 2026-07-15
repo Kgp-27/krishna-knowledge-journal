@@ -51,15 +51,15 @@ a {
 
   /* Colors */
 
-  --color-primary: #0f3d5e;
-  --color-primary-light: #1d5d86;
+  --color-primary:#1d323b;
+  --color-primary-light:#374151;
 
   --color-accent: #c89b3c;
 
-  --color-background: #ffffff;
-  --color-surface: #f7f8fa;
+  --color-background:#FAFAF8;
+  --color-surface:#FFFFFF;
 
-  --color-text: #222222;
+  --color-text: #e9dede;
   --color-text-light: #555555;
 
   --color-border: #dddddd;
@@ -176,18 +176,26 @@ a:hover {
   border-bottom: 1px solid var(--color-border);
 }
 
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.header-container{
 
-  padding: var(--space-5) 0;
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+height:94px;
 }
 
-.logo {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.2rem;
+.logo{
+
+font-family:var(--font-heading);
+
+font-size:1.45rem;
+
+font-weight:700;
+
+letter-spacing:-0.02em;
 }
 
 .nav-links {
@@ -212,4 +220,430 @@ a:hover {
   text-align: center;
 
   color: var(--color-text-light);
+}
+/* =====================================================
+   Buttons
+===================================================== */
+
+.button{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+
+padding:1rem 2.4rem;
+
+min-height:58px;
+
+border-radius:12px;
+
+font-weight:600;
+
+transition:var(--transition);
+}
+
+.button-primary{
+
+background:var(--color-primary);
+
+color:white;
+}
+
+.button-primary:hover{
+
+background:var(--color-primary-light);
+
+color:white;
+}
+
+.button-secondary{
+
+background:#FFFFFF;
+
+color:#14213D;
+
+border:none;
+
+}
+
+.button-secondary:hover{
+
+background:#F3F4F6;
+
+}
+
+/* =====================================================
+   Hero
+===================================================== */
+
+.hero{
+
+background:#eeeff2;
+
+padding-top:4rem;
+
+padding-bottom:6rem;
+
+}
+
+.hero-card{
+
+max-width:900px;
+
+margin:auto;
+
+text-align:center;
+
+padding:4rem;
+
+background:#14213D;
+
+border-radius:24px;
+
+box-shadow:0 20px 60px rgba(0,0,0,.35);
+
+}
+
+.hero-title{
+
+font-family:var(--font-heading);
+
+font-size:clamp(2.5rem,5vw,4rem);
+
+font-weight:700;
+
+color:white;
+
+margin-bottom:1rem;
+
+}
+
+.hero-tagline{
+
+font-size:1.15rem;
+
+font-weight:700;
+
+letter-spacing:.08em;
+
+text-transform:uppercase;
+
+color:#f6be04;
+
+margin-bottom:2rem;
+
+}
+
+.hero-description{
+
+font-size:1.3rem;
+
+line-height:1.8;
+
+color:#E5E7EB;
+
+margin-bottom:2.5rem;
+
+}
+
+.hero-actions{
+
+display:flex;
+
+justify-content:center;
+
+gap:1rem;
+
+flex-wrap:wrap;
+
+}
+
+.button-primary{
+
+background:#C9A227;
+
+color:#111827;
+
+}
+
+.button-primary:hover{
+
+background:#D9B54A;
+
+}
+
+.button-secondary{
+
+background:transparent;
+
+border:1px solid rgba(255,255,255,.35);
+
+color:white;
+
+}
+
+.button-secondary:hover{
+
+background:rgba(255,255,255,.08);
+
+}
+
+/* =====================================================
+   Sections
+===================================================== */
+
+.section{
+
+padding:5rem 0;
+}
+
+.section-header{
+
+margin-bottom:2rem;
+
+max-width:760px;
+}
+
+/* =====================================================
+   Pillars
+===================================================== */
+
+.pillar-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:2rem;
+}
+
+.pillar-card{
+
+padding:2rem;
+cursor:pointer;
+background:var(--color-surface);
+
+border:1px solid var(--color-border);
+
+border-radius:16px;
+
+transition:var(--transition);
+
+box-shadow:var(--shadow-sm);
+}
+
+.pillar-card:hover{
+
+transform:translateY(-8px);
+border-color:#C9A227;
+box-shadow:var(--shadow-md);
+}
+
+.pillar-card h3{
+
+margin-bottom:1rem;
+}
+
+/* =====================================================
+   Header
+===================================================== */
+
+.site-header{
+
+position:sticky;
+
+top:0;
+
+background:white;
+
+border-bottom:1px solid var(--color-border);
+
+z-index:100;
+}
+
+.header-container{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+height:80px;
+}
+
+.logo{
+
+font-family:var(--font-heading);
+
+font-size:1.65rem;
+
+font-weight:800;
+
+letter-spacing:-0.03em;
+
+color:#111827;
+
+}
+
+.nav-links{
+
+display:flex;
+
+gap:2rem;
+
+list-style:none;
+
+margin:0;
+
+padding:0;
+}
+
+.nav-links a{
+
+font-weight:500;
+}
+
+/* =====================================================
+   Footer
+===================================================== */
+
+.site-footer{
+
+margin-top:4rem;
+
+padding:3rem 0;
+
+text-align:center;
+
+border-top:1px solid var(--color-border);
+
+background:var(--color-surface);
+}
+
+.site-footer p{
+
+margin:.5rem 0;
+}
+
+/* =====================================================
+   Responsive
+===================================================== */
+
+@media (max-width:768px){
+
+.header-container{
+
+flex-direction:column;
+
+justify-content:center;
+
+height:auto;
+
+padding:1.25rem 0;
+
+gap:1rem;
+}
+
+.nav-links{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:1rem;
+}
+
+.hero{
+
+padding:4rem 0;
+}
+
+.hero h1{
+
+font-size:2.4rem;
+}
+
+}
+/* ==========================================
+   Homepage Polish v1
+========================================== */
+
+.hero-container{
+
+max-width:760px;
+
+}
+
+.hero{
+
+padding-top:2rem;
+
+padding-bottom:5rem;
+
+}
+
+.hero-eyebrow{
+
+font-family:var(--font-heading);
+
+font-size:1rem;
+
+font-weight:700;
+
+color:var(--color-primary);
+
+letter-spacing:.02em;
+
+text-transform:none;
+
+margin-bottom:.75rem;
+
+}
+
+.hero-motto{
+
+font-weight:700;
+
+letter-spacing:.18em;
+
+text-transform:uppercase;
+
+font-size:.95rem;
+
+color:var(--color-accent);
+
+margin-bottom:2rem;
+
+}
+
+.hero h1{
+
+font-size:clamp(3rem,7vw,5rem);
+
+line-height:1.05;
+
+margin-bottom:2rem;
+
+}
+
+.hero-description{
+
+font-size:1.35rem;
+
+max-width:650px;
+
+color:var(--color-text);
+
+margin-bottom:2.5rem;
+
+}
+
+.button{
+
+min-height:54px;
+
+padding:1rem 2rem;
+
+font-weight:600;
+
 }
