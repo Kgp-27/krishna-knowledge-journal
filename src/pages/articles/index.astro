@@ -1,0 +1,74 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+
+const articles = await getCollection("articles");
+
+const publishedArticles = articles
+  .filter((article) => !article.data.draft)
+  .sort(
+    (a, b) =>
+      b.data.publishDate.getTime() -
+      a.data.publishDate.getTime()
+  );
+---
+
+<BaseLayout
+  title="Articles | Krishna's Knowledge Journal"
+  description="Browse every article published in Krishna's Knowledge Journal."
+>
+
+  <Section
+    title="Articles"
+    description="Browse every article published in Krishna's Knowledge Journal."
+  >
+
+    {
+      publishedArticles.length > 0 ? (
+
+        <div class="pillar-grid">
+
+          {publishedArticles.map((article) => (
+
+            <article class="pillar-card">
+
+              <header>
+
+                <h3>
+
+                  <a href={`/articles/${article.id}/`}>
+                    {article.data.title}
+                  </a>
+
+                </h3>
+
+                <p class="article-meta">
+
+                  {article.data.category}
+                  {" • "}
+                  {article.data.publishDate.toLocaleDateString()}
+
+                </p>
+
+              </header>
+
+              <p>{article.data.description}</p>
+
+            </article>
+
+          ))}
+
+        </div>
+
+      ) : (
+
+        <p>No articles have been published yet.</p>
+
+      )
+    }
+
+  </Section>
+
+</BaseLayout>

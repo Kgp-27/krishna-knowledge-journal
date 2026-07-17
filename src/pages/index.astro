@@ -1,12 +1,28 @@
 ---
+import { getCollection } from "astro:content";
+
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 import Hero from "../components/Hero.astro";
 import Section from "../components/Section.astro";
 import PillarCard from "../components/PillarCard.astro";
+
+const articles = await getCollection("articles");
+
+const latestArticles = articles
+  .filter((article) => !article.data.draft)
+  .sort(
+    (a, b) =>
+      b.data.publishDate.getTime() -
+      a.data.publishDate.getTime()
+  )
+  .slice(0, 3);
 ---
 
-<BaseLayout title="Krishna's Knowledge Journal">
+<BaseLayout
+  title="Krishna's Knowledge Journal"
+  description="Finance, Economics, Indian Banking, Taxation and History explained from first principles."
+>
 
   <Hero />
 
@@ -29,17 +45,17 @@ import PillarCard from "../components/PillarCard.astro";
 
       <PillarCard
         title="Indian Banking"
-        description="The RBI, commercial banks, regulation and monetary systems."
+        description="The Reserve Bank of India, commercial banking, regulation and monetary systems."
       />
 
       <PillarCard
         title="Taxation"
-        description="Direct taxes, indirect taxes and public finance."
+        description="Direct taxation, indirect taxation and public finance."
       />
 
       <PillarCard
         title="History"
-        description="Economic history, financial history and institutions."
+        description="Economic history, financial history and institutional development."
       />
 
     </div>
@@ -48,13 +64,52 @@ import PillarCard from "../components/PillarCard.astro";
 
   <Section
     title="Latest Articles"
-    description="Articles will automatically appear here as the journal grows."
+    description="The latest publications from Krishna's Knowledge Journal."
   >
 
-    <p>
-      The journal is currently under development.
-The first articles will appear here soon.
-    </p>
+    {
+      latestArticles.length > 0 ? (
+
+        <div class="pillar-grid">
+
+          {latestArticles.map((article) => (
+
+            <article class="pillar-card">
+
+              <header>
+
+                <h3>
+
+                  <a href={`/articles/${article.id}/`}>
+                    {article.data.title}
+                  </a>
+
+                </h3>
+
+                <p class="article-meta">
+
+                  {article.data.category}
+                  {" • "}
+                  {article.data.publishDate.toLocaleDateString()}
+
+                </p>
+
+              </header>
+
+              <p>{article.data.description}</p>
+
+            </article>
+
+          ))}
+
+        </div>
+
+      ) : (
+
+        <p>No articles have been published yet.</p>
+
+      )
+    }
 
   </Section>
 
