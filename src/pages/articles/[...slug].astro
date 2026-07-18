@@ -50,11 +50,48 @@ const { previous, next } =
 const relatedArticles =
   await getRelatedArticles(article);
 
+const articleSchema = JSON.stringify({
+
+  "@context": "https://schema.org",
+
+  "@type": "Article",
+
+  headline: article.data.title,
+
+  description: article.data.description,
+
+  author: {
+
+    "@type": "Person",
+
+    name: "Krishna Pal",
+
+  },
+
+  publisher: {
+
+    "@type": "Organization",
+
+    name: "Krishna's Knowledge Journal",
+
+  },
+
+  datePublished:
+    article.data.publishDate.toISOString(),
+
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": Astro.url.href,
+  },
+
+});
 ---
 
 <BaseLayout
   title={`${article.data.title} | Krishna's Knowledge Journal`}
   description={article.data.description}
+  type="article"
+  schema={articleSchema}
 >
 
   <ReadingProgress />
@@ -79,7 +116,9 @@ const relatedArticles =
       <p class="article-description">
         {article.data.description}
       </p>
-       <FontControls />
+
+      <FontControls />
+
       <div class="article-meta">
 
         <time datetime={article.data.publishDate.toISOString()}>
@@ -125,7 +164,9 @@ const relatedArticles =
                 <small>← Previous</small>
 
                 <strong>
+
                   {previous.data.title}
+
                 </strong>
 
               </a>
@@ -144,7 +185,9 @@ const relatedArticles =
                 <small>Next →</small>
 
                 <strong>
+
                   {next.data.title}
+
                 </strong>
 
               </a>

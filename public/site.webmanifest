@@ -1,0 +1,21 @@
+{
+  "name": "Krishna's Knowledge Journal",
+  "short_name": "Knowledge Journal",
+  "description": "Finance, Economics, Indian Banking, Taxation and History explained from first principles.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1E3A8A",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "48x48 32x32 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

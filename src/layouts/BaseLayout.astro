@@ -6,13 +6,26 @@ import "../styles/global.css";
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  noIndex?: boolean;
+  type?: "website" | "article";
+  schema?: string;
 }
 
 const {
   title = "Krishna's Knowledge Journal",
   description =
     "Finance, Economics, Indian Banking, Taxation and History explained from first principles.",
+  image = "/og-image.png",
+  noIndex = false,
+  type = "website",
+  schema,
 } = Astro.props;
+
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site
+);
 ---
 
 <!DOCTYPE html>
@@ -22,6 +35,16 @@ const {
 <head>
 
   <meta charset="UTF-8" />
+
+  <meta
+    http-equiv="X-UA-Compatible"
+    content="IE=edge"
+  />
+
+  <meta
+    property="og:locale"
+    content="en_US"
+  />
 
   <meta
     name="viewport"
@@ -45,6 +68,99 @@ const {
     content="#1E3A8A"
   />
 
+  <meta
+    name="robots"
+    content={
+      noIndex
+        ? "noindex,nofollow"
+        : "index,follow"
+    }
+  />
+
+  <link
+    rel="canonical"
+    href={canonicalURL}
+  />
+
+  <!-- Open Graph -->
+
+  <meta
+    property="og:type"
+    content={type}
+  />
+
+  <meta
+    property="og:title"
+    content={title}
+  />
+
+  <meta
+    property="og:description"
+    content={description}
+  />
+
+  <meta
+    property="og:url"
+    content={canonicalURL}
+  />
+
+  <meta
+    property="og:image"
+    content={new URL(image, Astro.site)}
+  />
+
+  <meta
+    property="og:site_name"
+    content="Krishna's Knowledge Journal"
+  />
+
+  <!-- Twitter / X -->
+
+  <meta
+    name="twitter:card"
+    content="summary_large_image"
+  />
+
+  <meta
+    name="twitter:title"
+    content={title}
+  />
+
+  <meta
+    name="twitter:creator"
+    content="@yourusername"
+  />
+
+  <meta
+    name="twitter:site"
+    content="@yourusername"
+  />
+
+  <meta
+    name="twitter:description"
+    content={description}
+  />
+
+  <meta
+    name="twitter:image"
+    content={new URL(image, Astro.site)}
+  />
+
+  <link
+    rel="manifest"
+    href="/site.webmanifest"
+  />
+
+  <link
+    rel="icon"
+    href="/favicon.ico"
+  />
+
+  <link
+    rel="apple-touch-icon"
+    href="/apple-touch-icon.png"
+  />
+
   <link
     rel="preconnect"
     href="https://fonts.googleapis.com"
@@ -60,6 +176,17 @@ const {
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&display=swap"
     rel="stylesheet"
   />
+
+  {
+    schema && (
+
+      <script
+        type="application/ld+json"
+        set:html={schema}
+      />
+
+    )
+  }
 
 </head>
 
