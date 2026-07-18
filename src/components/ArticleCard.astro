@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  article: CollectionEntry<"articles">;
+}
+
+const { article } = Astro.props;
+---
+
+<article class="pillar-card">
+
+  <header>
+
+    <h3>
+      <a href={`/articles/${article.id}/`}>
+        {article.data.title}
+      </a>
+    </h3>
+
+<p class="article-meta">
+
+  <a href={`/categories/${article.data.category.toLowerCase()}/`}>
+    {article.data.category}
+  </a>
+
+  {" • "}
+
+  {article.data.publishDate.toLocaleDateString()}
+
+</p>
+  </header>
+
+  <p>{article.data.description}</p>
+  {
+  article.data.tags.length > 0 && (
+
+    <div class="article-tags">
+
+      {article.data.tags.map((tag) => (
+
+        <a
+          href={`/tags/${tag.toLowerCase()}/`}
+          class="tag"
+        >
+          {tag}
+        </a>
+
+      ))}
+
+    </div>
+
+  )
+}
+
+</article>

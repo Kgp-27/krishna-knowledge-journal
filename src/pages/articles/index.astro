@@ -1,17 +1,28 @@
 ---
-import { getCollection } from "astro:content";
+import { getPublishedArticles } from "../../lib/articles";
 
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Section from "../../components/Section.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import Pagination from "../../components/Pagination.astro";
 
-const articles = await getCollection("articles");
+const ARTICLES_PER_PAGE = 15;
 
-const publishedArticles = articles
-  .filter((article) => !article.data.draft)
-  .sort(
-    (a, b) =>
-      b.data.publishDate.getTime() -
-      a.data.publishDate.getTime()
+const publishedArticles =
+  await getPublishedArticles();
+
+const totalPages = Math.max(
+  1,
+  Math.ceil(
+    publishedArticles.length /
+    ARTICLES_PER_PAGE
+  )
+);
+
+const articles =
+  publishedArticles.slice(
+    0,
+    ARTICLES_PER_PAGE
   );
 ---
 
@@ -26,41 +37,29 @@ const publishedArticles = articles
   >
 
     {
-      publishedArticles.length > 0 ? (
+      articles.length > 0 ? (
 
-        <div class="pillar-grid">
+        <>
 
-          {publishedArticles.map((article) => (
+          <div class="pillar-grid">
 
-            <article class="pillar-card">
+            {articles.map((article) => (
 
-              <header>
+              <ArticleCard
+                article={article}
+              />
 
-                <h3>
+            ))}
 
-                  <a href={`/articles/${article.id}/`}>
-                    {article.data.title}
-                  </a>
+          </div>
 
-                </h3>
+          <Pagination
+            currentPage={1}
+            totalPages={totalPages}
+            baseUrl="/articles"
+          />
 
-                <p class="article-meta">
-
-                  {article.data.category}
-                  {" • "}
-                  {article.data.publishDate.toLocaleDateString()}
-
-                </p>
-
-              </header>
-
-              <p>{article.data.description}</p>
-
-            </article>
-
-          ))}
-
-        </div>
+        </>
 
       ) : (
 

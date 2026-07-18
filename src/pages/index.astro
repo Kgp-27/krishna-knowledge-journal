@@ -1,22 +1,12 @@
 ---
-import { getCollection } from "astro:content";
+import { getLatestArticles } from "../lib/articles";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
-
+import ArticleCard from "../components/ArticleCard.astro";
 import Hero from "../components/Hero.astro";
 import Section from "../components/Section.astro";
 import PillarCard from "../components/PillarCard.astro";
-
-const articles = await getCollection("articles");
-
-const latestArticles = articles
-  .filter((article) => !article.data.draft)
-  .sort(
-    (a, b) =>
-      b.data.publishDate.getTime() -
-      a.data.publishDate.getTime()
-  )
-  .slice(0, 3);
+const latestArticles = await getLatestArticles();
 ---
 
 <BaseLayout
@@ -71,36 +61,13 @@ const latestArticles = articles
       latestArticles.length > 0 ? (
 
         <div class="pillar-grid">
+        {latestArticles.map((article) => (
 
-          {latestArticles.map((article) => (
+  <ArticleCard
+    article={article}
+  />
 
-            <article class="pillar-card">
-
-              <header>
-
-                <h3>
-
-                  <a href={`/articles/${article.id}/`}>
-                    {article.data.title}
-                  </a>
-
-                </h3>
-
-                <p class="article-meta">
-
-                  {article.data.category}
-                  {" • "}
-                  {article.data.publishDate.toLocaleDateString()}
-
-                </p>
-
-              </header>
-
-              <p>{article.data.description}</p>
-
-            </article>
-
-          ))}
+))}
 
         </div>
 

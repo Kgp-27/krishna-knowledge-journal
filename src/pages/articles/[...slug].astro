@@ -5,6 +5,19 @@ import {
 } from "astro:content";
 
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import Breadcrumbs from "../../components/Breadcrumbs.astro";
+import CopyLink from "../../components/CopyLink.astro";
+import ReadingProgress from "../../components/ReadingProgress.astro";
+import TableOfContents from "../../components/TableOfContents.astro";
+import FontControls from "../../components/FontControls.astro";
+
+import {
+  getAdjacentArticles,
+  getRelatedArticles,
+} from "../../lib/articles";
+
+import { getReadingTime } from "../../lib/readingTime";
 
 export async function getStaticPaths() {
 
@@ -26,7 +39,17 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 
-const { Content } = await render(article);
+const { Content, headings } = await render(article);
+
+const readingTime =
+  getReadingTime(article.body ?? "");
+
+const { previous, next } =
+  await getAdjacentArticles(article.id);
+
+const relatedArticles =
+  await getRelatedArticles(article);
+
 ---
 
 <BaseLayout
@@ -34,7 +57,14 @@ const { Content } = await render(article);
   description={article.data.description}
 >
 
+  <ReadingProgress />
+
   <article class="article-page container">
+
+    <Breadcrumbs
+      category={article.data.category}
+      title={article.data.title}
+    />
 
     <header class="article-header">
 
@@ -49,24 +79,106 @@ const { Content } = await render(article);
       <p class="article-description">
         {article.data.description}
       </p>
-
-      <p class="article-meta">
-
-        Published on{" "}
+       <FontControls />
+      <div class="article-meta">
 
         <time datetime={article.data.publishDate.toISOString()}>
-
           {article.data.publishDate.toLocaleDateString()}
-
         </time>
 
-      </p>
+        {" • "}
+
+        {readingTime}
+
+        {" • "}
+
+        <CopyLink />
+
+      </div>
 
     </header>
 
-    <div class="article-content">
+    <div class="article-layout">
 
-      <Content />
+      <TableOfContents
+        headings={headings}
+      />
+
+      <div>
+
+        <div class="article-content">
+
+          <Content />
+
+        </div>
+
+        <nav class="article-navigation">
+
+          {
+            previous ? (
+
+              <a
+                href={`/articles/${previous.id}/`}
+                class="article-nav-card"
+              >
+
+                <small>← Previous</small>
+
+                <strong>
+                  {previous.data.title}
+                </strong>
+
+              </a>
+
+            ) : <div></div>
+          }
+
+          {
+            next ? (
+
+              <a
+                href={`/articles/${next.id}/`}
+                class="article-nav-card"
+              >
+
+                <small>Next →</small>
+
+                <strong>
+                  {next.data.title}
+                </strong>
+
+              </a>
+
+            ) : <div></div>
+          }
+
+        </nav>
+
+        {
+          relatedArticles.length > 0 && (
+
+            <section class="related-articles">
+
+              <h2>Related Articles</h2>
+
+              <div class="pillar-grid">
+
+                {relatedArticles.map((related) => (
+
+                  <ArticleCard
+                    article={related}
+                  />
+
+                ))}
+
+              </div>
+
+            </section>
+
+          )
+        }
+
+      </div>
 
     </div>
 

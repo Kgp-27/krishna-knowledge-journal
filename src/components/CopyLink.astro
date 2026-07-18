@@ -1,0 +1,32 @@
+<button
+  id="copy-link-button"
+  class="copy-link-button"
+>
+  Copy Link
+</button>
+
+<script>
+const button = document.getElementById("copy-link-button");
+
+button?.addEventListener("click", async () => {
+
+  try {
+
+    await navigator.clipboard.writeText(window.location.href);
+
+    button.textContent = "Copied!";
+
+    setTimeout(() => {
+
+      button.textContent = "Copy Link";
+
+    }, 2000);
+
+  } catch {
+
+    button.textContent = "Copy failed";
+
+  }
+
+});
+</script>

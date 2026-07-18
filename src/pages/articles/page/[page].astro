@@ -1,0 +1,75 @@
+---
+import { getPublishedArticles } from "../../../lib/articles";
+
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Section from "../../../components/Section.astro";
+import ArticleCard from "../../../components/ArticleCard.astro";
+import Pagination from "../../../components/Pagination.astro";
+
+const ARTICLES_PER_PAGE = 15;
+
+export async function getStaticPaths() {
+
+  const ARTICLES_PER_PAGE = 15;
+
+  const articles = await getPublishedArticles();
+
+  const totalPages = Math.ceil(
+    articles.length / ARTICLES_PER_PAGE
+  );
+
+  return Array.from(
+    { length: Math.max(0, totalPages - 1) },
+    (_, i) => ({
+      params: {
+        page: String(i + 2),
+      },
+    }))
+}
+
+const currentPage = Number(Astro.params.page);
+
+const publishedArticles = await getPublishedArticles();
+
+const totalPages = Math.ceil(
+  publishedArticles.length / ARTICLES_PER_PAGE
+);
+
+const start =
+  (currentPage - 1) * ARTICLES_PER_PAGE;
+
+const articles = publishedArticles.slice(
+  start,
+  start + ARTICLES_PER_PAGE
+);
+---
+
+<BaseLayout
+  title={`Articles – Page ${currentPage} | Krishna's Knowledge Journal`}
+  description="Browse every article published in Krishna's Knowledge Journal."
+>
+
+  <Section
+    title={`Articles — Page ${currentPage}`}
+    description="Browse every article published in Krishna's Knowledge Journal."
+  >
+
+    <div class="pillar-grid">
+
+      {articles.map((article) => (
+
+        <ArticleCard article={article} />
+
+      ))}
+
+    </div>
+
+    <Pagination
+      currentPage={currentPage}
+      totalPages={totalPages}
+      baseUrl="/articles"
+    />
+
+  </Section>
+
+</BaseLayout>

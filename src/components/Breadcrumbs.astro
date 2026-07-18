@@ -1,0 +1,30 @@
+---
+interface Props {
+  category: string;
+  title: string;
+}
+
+const { category, title } = Astro.props;
+---
+
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+
+  <a href="/">Home</a>
+
+  <span>›</span>
+
+  <a href="/articles">Articles</a>
+
+  <span>›</span>
+
+  <a href={`/categories/${category.toLowerCase()}/`}>
+    {category}
+  </a>
+
+  <span>›</span>
+
+  <span class="current">
+    {title}
+  </span>
+
+</nav>

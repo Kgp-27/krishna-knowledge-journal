@@ -1,0 +1,46 @@
+---
+import { getAllCategories, getArticlesByCategory } from "../../lib/articles";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+
+export async function getStaticPaths() {
+  const categories = await getAllCategories();
+
+  return categories.map((category) => ({
+    params: {
+      category: category.toLowerCase(),
+    },
+    props: {
+      category,
+    },
+  }));
+}
+
+const { category } = Astro.props;
+
+const articles = await getArticlesByCategory(category);
+---
+
+<BaseLayout
+  title={`${category} | Krishna's Knowledge Journal`}
+>
+
+  <Section
+    title={category}
+    description={`Articles about ${category}.`}
+  >
+
+    <div class="pillar-grid">
+
+      {articles.map((article) => (
+
+        <ArticleCard article={article} />
+
+      ))}
+
+    </div>
+
+  </Section>
+
+</BaseLayout>

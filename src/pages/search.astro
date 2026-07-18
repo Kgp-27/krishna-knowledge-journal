@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Search | Krishna's Knowledge Journal">
+
+  <section class="section">
+
+    <div class="container">
+
+      <h1>Search</h1>
+
+      <p>
+        Search every article published in Krishna's Knowledge Journal.
+      </p>
+
+      <link
+        href="/pagefind/pagefind-component-ui.css"
+        rel="stylesheet"
+      />
+
+      <script
+        src="/pagefind/pagefind-component-ui.js"
+        type="module">
+      </script>
+
+      <pagefind-searchbox></pagefind-searchbox>
+
+    </div>
+
+  </section>
+
+</BaseLayout>

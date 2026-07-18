@@ -1,0 +1,46 @@
+---
+import { getAllTags, getArticlesByTag } from "../../lib/articles";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../components/Section.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+
+export async function getStaticPaths() {
+  const tags = await getAllTags();
+
+  return tags.map((tag) => ({
+    params: {
+      tag: tag.toLowerCase(),
+    },
+    props: {
+      tag,
+    },
+  }));
+}
+
+const { tag } = Astro.props;
+
+const articles = await getArticlesByTag(tag);
+---
+
+<BaseLayout
+  title={`${tag} | Krishna's Knowledge Journal`}
+>
+
+  <Section
+    title={`Tag: ${tag}`}
+    description={`Articles tagged with "${tag}".`}
+  >
+
+    <div class="pillar-grid">
+
+      {articles.map((article) => (
+
+        <ArticleCard article={article} />
+
+      ))}
+
+    </div>
+
+  </Section>
+
+</BaseLayout>

@@ -1,0 +1,56 @@
+<div class="font-controls">
+
+  <button id="font-decrease">A−</button>
+
+  <button id="font-reset">A</button>
+
+  <button id="font-increase">A+</button>
+
+</div>
+
+<script>
+
+const content =
+  document.querySelector(".article-content");
+
+let size = 100;
+
+function apply() {
+
+  if (!content) return;
+
+  content.style.fontSize = `${size}%`;
+
+}
+
+document
+  .getElementById("font-decrease")
+  ?.addEventListener("click", () => {
+
+    size = Math.max(80, size - 10);
+
+    apply();
+
+});
+
+document
+  .getElementById("font-reset")
+  ?.addEventListener("click", () => {
+
+    size = 100;
+
+    apply();
+
+});
+
+document
+  .getElementById("font-increase")
+  ?.addEventListener("click", () => {
+
+    size = Math.min(150, size + 10);
+
+    apply();
+
+});
+
+</script>
