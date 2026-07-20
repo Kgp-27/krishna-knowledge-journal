@@ -1,30 +1,31 @@
 ---
-title: "Finance from First Principles"
-description: "An introduction to finance from first principles."
-publishDate: 2026-07-16
-category: "Finance"
+title: Finance from First Principles
+description: An introduction to finance from first principles.
+author: Krishna Pal
+category: Finance
 tags:
   - Finance
   - Fundamentals
-featured: true
+publishDate: 2026-07-16
+updatedDate: 2026-07-21
+editorialStatus: none
+updateReason: policy change,     wrong conclusion
+featured: false
 draft: false
 ---
-## What is Finance?
+zero![](@assets/articles/finance-from-first-principles/362538.jpg)
 
-Finance is the discipline that studies how individuals, businesses, and governments allocate, raise, invest, and manage money over time under conditions of uncertainty.
+This is a footnote test.[^1]
 
-## Why First Principles Matter
+{% table %}
+- Year
+- Revenue
+---
+- 2024
+- 100
+---
+- 2025
+- 150
+{% /table %}
 
-Every financial decision involves trade-offs between risk, return, liquidity, and time.
-
-### Risk
-
-Understanding risk is fundamental.
-
-### Return
-
-Return compensates investors for delaying consumption.
-
-## Conclusion
-
-This article serves as the starting point for Krishna's Knowledge Journal.
+[^1]: This is the footnote.

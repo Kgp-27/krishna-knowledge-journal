@@ -1,105 +1,96 @@
-import { config, fields, collection } from "@keystatic/core";
+// keystatic.config.ts
+import { config, fields, collection } from '@keystatic/core';
 
 export default config({
   storage: {
-    kind: "local",
+    kind: 'local',
   },
-
   collections: {
     articles: collection({
-      label: "Articles",
-
-      slugField: "title",
-
-      path: "src/content/articles/*",
-
-      format: {
-        contentField: "content",
-      },
-
+      label: 'Articles',
+      slugField: 'title',
+      path: 'src/content/articles/*',
+      format: { contentField: 'content' },
       schema: {
-        title: fields.slug({
-          name: {
-            label: "Title",
-          },
-        }),
+        title: fields.slug({ name: { label: 'Title' } }),
 
         description: fields.text({
-          label: "Description",
+          label: 'Description',
           multiline: true,
         }),
 
-        category: fields.select({
-          label: "Category",
-
-          options: [
-            {
-              label: "Finance",
-              value: "Finance",
-            },
-            {
-              label: "Economics",
-              value: "Economics",
-            },
-            {
-              label: "Indian Banking",
-              value: "Indian Banking",
-            },
-            {
-              label: "Taxation",
-              value: "Taxation",
-            },
-            {
-              label: "History",
-              value: "History",
-            },
-          ],
-
-          defaultValue: "Finance",
+        author: fields.text({
+          label: 'Author',
+          defaultValue: 'Krishna Pal',
         }),
 
-        tags: fields.array(
-          fields.text({
-            label: "Tag",
-          }),
-          {
-            label: "Tags",
+        category: fields.select({
+          label: 'Category',
+          options: [
+            { label: 'Finance', value: 'Finance' },
+            { label: 'Economics', value: 'Economics' },
+            { label: 'Indian Banking', value: 'Indian Banking' },
+            { label: 'Taxation', value: 'Taxation' },
+            { label: 'History', value: 'History' },
+          ],
+          defaultValue: 'Finance',
+        }),
 
-            itemLabel: (props) => props.value,
-          }
-        ),
+        tags: fields.array(fields.text({ label: 'Tag' }), {
+          label: 'Tags',
+          itemLabel: (props) => props.value,
+        }),
+
+        featuredImage: fields.image({
+          label: 'Featured Image',
+          directory: 'src/assets/articles',
+          publicPath: '@assets/articles/',
+        }),
 
         publishDate: fields.date({
-          label: "Publish Date",
+          label: 'Publish Date',
         }),
 
         updatedDate: fields.date({
-          label: "Updated Date",
+          label: 'Updated Date',
+        }),
+
+        editorialStatus: fields.select({
+          label: 'Editorial Status',
+          options: [
+            { label: 'None', value: 'none' },
+            { label: 'Minor Edit', value: 'minor' },
+            { label: 'Major Edit', value: 'major' },
+            { label: 'Retraction', value: 'retraction' },
+          ],
+          defaultValue: 'none',
+        }),
+
+        updateReason: fields.text({
+          label: 'Update / Retraction Reason',
+          multiline: true,
         }),
 
         featured: fields.checkbox({
-          label: "Featured Article",
-
+          label: 'Featured',
           defaultValue: false,
         }),
 
         draft: fields.checkbox({
-          label: "Draft",
-
+          label: 'Draft',
           defaultValue: true,
         }),
-         content: fields.markdoc({
-          label: "Article",
 
-         extension: "md",
-
+        content: fields.markdoc({
+          label: 'Content',
+          extension: 'md',
           options: {
-         image: {
-         directory: "src/assets/images",
-         publicPath: "/src/assets/images/",
-         },
-        },
-      }),
+            image: {
+              directory: 'src/assets/articles',
+              publicPath: '@assets/articles/',
+            },
+          },
+        }),
       },
     }),
   },

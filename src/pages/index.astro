@@ -1,12 +1,21 @@
 ---
-import { getLatestArticles } from "../lib/articles";
+import {
+  getHomepageHero,
+  getLatestArticles,
+} from "../lib/articles";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import Hero from "../components/Hero.astro";
 import Section from "../components/Section.astro";
 import PillarCard from "../components/PillarCard.astro";
-const latestArticles = await getLatestArticles();
+const featuredArticle =
+  await getHomepageHero();
+
+const latestArticles =
+  (await getLatestArticles()).filter(
+    (article) => article.id !== featuredArticle?.id
+  );
 ---
 
 <BaseLayout
@@ -15,6 +24,22 @@ const latestArticles = await getLatestArticles();
 >
 
   <Hero />
+  {
+  featuredArticle && (
+
+    <Section
+      title="Featured Article"
+      description="Editor's featured publication."
+    >
+
+      <ArticleCard
+        article={featuredArticle}
+      />
+
+    </Section>
+
+  )
+}
 
   <Section
     title="Explore the Library"

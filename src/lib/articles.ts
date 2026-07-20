@@ -6,11 +6,24 @@ async function getAllArticles() {
   return getCollection("articles");
 }
 
+function isPublished(article: Article) {
+  return (
+    !article.data.draft &&
+    article.data.publishDate.getTime() <= Date.now()
+  );
+}
+
 export async function getPublishedArticles() {
   const articles = await getAllArticles();
 
+  const now = new Date();
+
   return articles
-    .filter((article) => !article.data.draft)
+    .filter((article) => {
+      if (article.data.draft) return false;
+
+      return article.data.publishDate <= now;
+    })
     .sort(
       (a, b) =>
         b.data.publishDate.getTime() -
@@ -18,38 +31,49 @@ export async function getPublishedArticles() {
     );
 }
 
-export async function getLatestArticles(limit = 3) {
-  const articles = await getPublishedArticles();
+export async function getDraftArticles() {
+  const articles = await getAllArticles();
 
-  return articles.slice(0, limit);
+  return articles.filter((article) => article.data.draft);
 }
 
-export async function getFeaturedArticles() {
-  const articles = await getPublishedArticles();
+export async function getScheduledArticles() {
+  const articles = await getAllArticles();
 
   return articles.filter(
-    (article) => article.data.featured
+    (article) =>
+      !article.data.draft &&
+      article.data.publishDate.getTime() > Date.now()
   );
 }
 
-export async function getArticlesByCategory(
-  category: string
-) {
-  const articles = await getPublishedArticles();
+export async function getLatestArticles(limit = 3) {
+  return (await getPublishedArticles()).slice(0, limit);
+}
 
-  return articles.filter(
+export async function getFeaturedArticles(limit = 3) {
+  return (await getPublishedArticles())
+    .filter((article) => article.data.featured)
+    .slice(0, limit);
+}
+
+export async function getHomepageHero() {
+  const featured = await getFeaturedArticles(1);
+
+    return featured[0] ?? null;
+
+}
+
+export async function getArticlesByCategory(category: string) {
+  return (await getPublishedArticles()).filter(
     (article) =>
       article.data.category.toLowerCase() ===
       category.toLowerCase()
   );
 }
 
-export async function getArticlesByTag(
-  tag: string
-) {
-  const articles = await getPublishedArticles();
-
-  return articles.filter((article) =>
+export async function getArticlesByTag(tag: string) {
+  return (await getPublishedArticles()).filter((article) =>
     article.data.tags.some(
       (t) => t.toLowerCase() === tag.toLowerCase()
     )
@@ -57,28 +81,30 @@ export async function getArticlesByTag(
 }
 
 export async function getAllCategories() {
-  const articles = await getPublishedArticles();
-
-  return [...new Set(
-    articles.map((article) => article.data.category)
-  )].sort();
+  return [
+    ...new Set(
+      (await getPublishedArticles()).map(
+        (article) => article.data.category
+      )
+    ),
+  ].sort();
 }
 
 export async function getAllTags() {
-  const articles = await getPublishedArticles();
-
-  return [...new Set(
-    articles.flatMap((article) => article.data.tags)
-  )].sort();
+  return [
+    ...new Set(
+      (await getPublishedArticles()).flatMap(
+        (article) => article.data.tags
+      )
+    ),
+  ].sort();
 }
 
 export async function getRelatedArticles(
   current: Article,
   limit = 3
 ) {
-  const articles = await getPublishedArticles();
-
-  return articles
+  return (await getPublishedArticles())
     .filter((article) => article.id !== current.id)
     .map((article) => {
       let score = 0;
@@ -89,34 +115,24 @@ export async function getRelatedArticles(
         score += 10;
       }
 
-      const sharedTags =
+      score +=
         article.data.tags.filter((tag) =>
           current.data.tags.includes(tag)
-        ).length;
+        ).length * 2;
 
-      score += sharedTags * 2;
-
-      return {
-        article,
-        score,
-      };
+      return { article, score };
     })
-    .sort((a, b) => {
-      if (b.score !== a.score) {
-        return b.score - a.score;
-      }
-
-      return (
-        b.article.data.publishDate.getTime() -
-        a.article.data.publishDate.getTime()
-      );
-    })
+    .sort((a, b) =>
+      b.score !== a.score
+        ? b.score - a.score
+        : b.article.data.publishDate.getTime() -
+          a.article.data.publishDate.getTime()
+    )
     .slice(0, limit)
     .map((item) => item.article);
 }
 
 export async function getAdjacentArticles(currentId: string) {
-
   const articles = await getPublishedArticles();
 
   const index = articles.findIndex(
@@ -134,5 +150,4 @@ export async function getAdjacentArticles(currentId: string) {
         ? articles[index - 1]
         : null,
   };
-
 }
