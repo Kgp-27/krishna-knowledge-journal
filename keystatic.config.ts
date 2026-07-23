@@ -3,7 +3,8 @@ import { config, fields, collection } from '@keystatic/core';
 
 export default config({
   storage: {
-    kind: 'local',
+    kind: 'github',
+    repo: 'Kgp-27/krishna-knowledge-journal',
   },
   collections: {
     articles: collection({
