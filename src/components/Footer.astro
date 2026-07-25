@@ -1,13 +1,15 @@
 <footer class="site-footer">
-
+---
+import { siteConfig } from "../config/site";
+---
   <div class="container">
 
     <div class="footer-brand">
 
-      <h2>Krishna's Knowledge Journal</h2>
+      <h2>{siteConfig.title}</h2>
 
       <p class="footer-tagline">
-        Understanding Finance from First Principles
+        {siteConfig.tagline}
       </p>
 
     </div>
@@ -26,13 +28,13 @@
 
     <p class="footer-topics">
 
-      Finance • Economics • Indian Banking • Taxation • History
+      {siteConfig.topics.join(" • ")}
 
     </p>
 
     <p class="footer-copyright">
 
-      © 2026 Krishna's Knowledge Journal. All rights reserved.
+      © {new Date().getFullYear()} {siteConfig.title}. All rights reserved.
 
     </p>
 

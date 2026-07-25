@@ -479,31 +479,6 @@ li {
   color: var(--color-text);
   line-height: 1.7;
 }
-
-.article-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem;
-  padding: var(--space-5) var(--space-6) var(--space-6);
-  margin-top: auto;
-}
-
-.tag {
-  display: inline-flex;
-  align-items: center;
-  padding: .35rem .8rem;
-  border-radius: 999px;
-  background: var(--color-background-alt);
-  font-size: var(--fs-200);
-  text-decoration: none;
-  transition: var(--transition);
-}
-
-.tag:hover {
-  background: var(--color-accent);
-  color: white;
-}
-
 /* ==========================================
    10. Tags
 ========================================== */
@@ -1218,7 +1193,7 @@ li {
   }
 }
 /* ==========================================
-   18. Error Pages
+   19. Error Pages
 ========================================== */
 
 .error-page {

@@ -16,14 +16,8 @@ function isPublished(article: Article) {
 export async function getPublishedArticles() {
   const articles = await getAllArticles();
 
-  const now = new Date();
-
-  return articles
-    .filter((article) => {
-      if (article.data.draft) return false;
-
-      return article.data.publishDate <= now;
-    })
+return articles
+  .filter(isPublished)
     .sort(
       (a, b) =>
         b.data.publishDate.getTime() -

@@ -1,22 +1,23 @@
 <section class="hero">
+---
+import { siteConfig } from "../config/site";
+---
 
   <div class="container hero-container">
 
     <div class="hero-card">
 
       <h1 class="hero-title">
-        Krishna's Knowledge Journal
+          {siteConfig.title}
       </h1>
 
       <p class="hero-tagline">
-        Understanding Finance from First Principles
+        {siteConfig.tagline}
       </p>
 
       <p class="hero-description">
 
-        A knowledge journal dedicated to finance, economics,
-        Indian banking, taxation and history through
-        first-principles thinking.
+        {siteConfig.description}
 
       </p>
 
