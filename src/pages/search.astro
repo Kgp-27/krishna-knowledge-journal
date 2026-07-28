@@ -3,12 +3,99 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Search | Krishna's Knowledge Journal">
-  <section class="section">
-    <div class="container">
+
+<section class="section">
+
+  <div class="container">
+
+    <header class="section-header">
+
       <h1>Search</h1>
-      <p>
-        Search will be available after the first articles are published.
+
+      <p class="section-description">
+        Search across all published articles.
       </p>
-    </div>
-  </section>
+
+    </header>
+
+    <input
+      id="search-input"
+      type="search"
+      placeholder="Search articles..."
+      autocomplete="off"
+    />
+
+    <div id="search-results"></div>
+
+  </div>
+
+</section>
+
+<script type="module">
+  import MiniSearch from "minisearch";
+
+  const response = await fetch("/search.json");
+  const json = await response.json();
+
+  const miniSearch = MiniSearch.loadJS(json, {
+    fields: [
+      "title",
+      "description",
+      "category",
+      "tags",
+      "body",
+    ],
+    storeFields: [
+      "title",
+      "description",
+      "category",
+      "url",
+    ],
+  });
+
+  const input =
+    document.getElementById("search-input");
+
+  const results =
+    document.getElementById("search-results");
+
+  input?.addEventListener("input", () => {
+
+    const query = input.value.trim();
+
+    if (!query) {
+
+      results.innerHTML = "";
+
+      return;
+
+    }
+
+    const matches = miniSearch.search(query);
+
+    results.innerHTML = matches.length
+      ? matches.map(result => `
+        <article class="article-card">
+          <header>
+            <h3>
+              <a href="${result.url}">
+                ${result.title}
+              </a>
+            </h3>
+
+            <p class="article-meta">
+              ${result.category}
+            </p>
+          </header>
+
+          <p>
+            ${result.description}
+          </p>
+        </article>
+      `).join("")
+      : "<p>No matching articles found.</p>";
+
+  });
+</script>
+
 </BaseLayout>
