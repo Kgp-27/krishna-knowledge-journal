@@ -1,43 +1,32 @@
-<footer class="site-footer">
 ---
 import { siteConfig } from "../config/site";
 ---
+
+<footer class="site-footer">
   <div class="container">
 
     <div class="footer-brand">
-
       <h2>{siteConfig.title}</h2>
 
       <p class="footer-tagline">
         {siteConfig.tagline}
       </p>
-
     </div>
 
     <nav class="footer-nav" aria-label="Footer Navigation">
-
       <a href="/">Home</a>
-
       <a href="/articles">Articles</a>
-
       <a href="/about">About</a>
-
       <a href="/contact">Contact</a>
-
     </nav>
 
     <p class="footer-topics">
-
       {siteConfig.topics.join(" • ")}
-
     </p>
 
     <p class="footer-copyright">
-
       © {new Date().getFullYear()} {siteConfig.title}. All rights reserved.
-
     </p>
 
   </div>
-
 </footer>
