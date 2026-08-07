@@ -10,7 +10,8 @@ tags:
 featuredImage: ../../assets/articles/Screenshot 2026-08-06 221018.png
 publishDate: 2026-08-07
 updatedDate: 2026-08-07
-editorialStatus: none
+editorialStatus: minor
+updateReason: nothing
 featured: true
 draft: false
 ---
@@ -20,11 +21,7 @@ abbbbbbb
 
 ## yes
 
-
-
 ### jj
-
-
 
 - 222
 - 3333
@@ -35,8 +32,6 @@ jhdbh
 
 1. 22222kkk
 2. 3555
-
-
 
 ![](<../../assets/articles/Screenshot 2026-08-06 221030.png>)
 
