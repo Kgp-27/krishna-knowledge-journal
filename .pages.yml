@@ -1,0 +1,80 @@
+media:
+  input: src/assets/articles
+  output: ../../assets/articles
+
+content:
+  - name: articles
+    label: Articles
+    type: collection
+    path: src/content/articles
+    format: yaml-frontmatter
+
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+
+      - name: description
+        label: Description
+        type: text
+        required: true
+
+      - name: author
+        label: Author
+        type: string
+        default: Krishna Pal
+
+      - name: category
+        label: Category
+        type: select
+        options:
+          values:
+            - Finance
+            - Economics
+            - Indian Banking
+            - Taxation
+            - History
+
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+
+      - name: featuredImage
+        label: Featured Image
+        type: image
+
+      - name: publishDate
+        label: Publish Date
+        type: date
+
+      - name: updatedDate
+        label: Updated Date
+        type: date
+
+      - name: editorialStatus
+        label: Editorial Status
+        type: select
+        options:
+          values:
+            - none
+            - minor
+            - major
+            - retraction
+
+      - name: updateReason
+        label: Update Reason
+        type: text
+
+      - name: featured
+        label: Featured Article
+        type: boolean
+
+      - name: draft
+        label: Draft
+        type: boolean
+
+      - name: body
+        label: Article
+        type: rich-text
