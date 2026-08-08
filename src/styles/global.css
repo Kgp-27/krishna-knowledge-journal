@@ -1330,3 +1330,85 @@ li {
 .editorial-retraction strong {
   color: #b42318;
 }
+/* ==========================================
+   21. Support Page
+========================================== */
+
+.support-upi {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.upi-details {
+  flex: 1;
+}
+
+.support-label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-size: var(--fs-300);
+  font-weight: 600;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.upi-copy-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.upi-copy-row code {
+  padding: 0.65rem 0.8rem;
+  background: var(--color-background);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-primary);
+  font-size: var(--fs-400);
+}
+
+.copy-upi {
+  border: 0;
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1rem;
+  background: var(--color-primary);
+  color: white;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.copy-upi:hover {
+  background: var(--color-accent);
+}
+
+.upi-qr {
+  flex-shrink: 0;
+}
+
+.upi-qr img {
+  display: block;
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+}
+
+@media (max-width: 640px) {
+  .support-upi {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .upi-qr {
+    align-self: center;
+  }
+}

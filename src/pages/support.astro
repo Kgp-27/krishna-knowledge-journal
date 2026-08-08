@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../components/Section.astro";
+---
+
+<BaseLayout
+  title="Support | Krishna's Knowledge Journal"
+  description="Support Krishna's Knowledge Journal and help sustain independent educational writing and research."
+>
+
+  <Section
+    title="Support the Journal"
+    description="Help keep Krishna's Knowledge Journal independent and growing."
+  >
+
+    <p>
+      Krishna's Knowledge Journal is an independently maintained educational
+      publication focused on explaining finance, economics, Indian banking,
+      taxation and history from first principles.
+    </p>
+
+    <p>
+      If you find the journal useful and would like to support its continued
+      development, you can contribute through UPI.
+    </p>
+
+  </Section>
+
+  <Section
+    title="Support via UPI"
+    description="You can support the journal directly using UPI."
+  >
+
+    <div class="support-upi">
+
+      <div class="upi-details">
+        <span class="support-label">UPI ID</span>
+
+        <div class="upi-copy-row">
+          <code id="upi-id">krishnasjournal@upi</code>
+
+          <button
+            type="button"
+            class="copy-upi"
+            data-copy-upi="krishnasjournal@upi"
+          >
+            Copy UPI ID
+          </button>
+        </div>
+      </div>
+
+      <div class="upi-qr">
+        <img
+          src="/images/support/upi-qr.png"
+          alt="UPI QR code for supporting Krishna's Knowledge Journal"
+          width="200"
+          height="200"
+        />
+      </div>
+
+    </div>
+
+  </Section>
+
+  <Section
+    title="More Ways to Support"
+    description="Additional support options will be added in the future."
+  >
+
+    <p>
+      PayPal and Buy Me a Coffee will be added here as additional support
+      options as the journal grows.
+    </p>
+
+  </Section>
+
+</BaseLayout>
+
+<script>
+  const copyButton = document.querySelector("[data-copy-upi]");
+
+  copyButton?.addEventListener("click", async () => {
+    const upi = copyButton.getAttribute("data-copy-upi");
+
+    if (!upi) return;
+
+    try {
+      await navigator.clipboard.writeText(upi);
+
+      const originalText = copyButton.textContent;
+      copyButton.textContent = "Copied!";
+
+      setTimeout(() => {
+        copyButton.textContent = originalText;
+      }, 2000);
+    } catch {
+      copyButton.textContent = "Copy failed";
+
+      setTimeout(() => {
+        copyButton.textContent = "Copy UPI ID";
+      }, 2000);
+    }
+  });
+</script>
