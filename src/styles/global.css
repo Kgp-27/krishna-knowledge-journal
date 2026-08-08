@@ -661,7 +661,7 @@ li {
 
 /* 12.2 Links */
 .article-content a {
-  color: var(--color-accent);
+  color: #b42318;
   font-weight: 600;
   text-decoration: underline;
   text-decoration-thickness: 2px;
@@ -1283,4 +1283,50 @@ li {
 
 .editorial-notice p {
   margin: 0;
+}
+/* ==========================================
+   20. Editorial Status
+========================================== */
+
+.editorial-notice {
+  max-width: var(--article-width);
+  margin: 0 auto var(--space-7);
+  padding: var(--space-5) var(--space-6);
+  border-radius: var(--radius-md);
+}
+
+.editorial-notice strong {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-size: var(--fs-500);
+  font-weight: 700;
+}
+
+.editorial-notice p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* Major Update */
+
+.editorial-major {
+  background: #e8eef7;
+  border-left: 5px solid #173a63;
+  color: #173a63;
+}
+
+.editorial-major strong {
+  color: #173a63;
+}
+
+/* Retraction */
+
+.editorial-retraction {
+  background: #fce8e8;
+  border-left: 5px solid #b42318;
+  color: #8a1c13;
+}
+
+.editorial-retraction strong {
+  color: #b42318;
 }

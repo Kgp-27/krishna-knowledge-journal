@@ -22,69 +22,43 @@ import {
 import { getReadingTime } from "../../lib/readingTime";
 
 export async function getStaticPaths() {
-
   const articles = await getCollection("articles");
-
   return articles.map((article) => ({
-
     params: {
       slug: article.id,
     },
-
     props: {
       article,
     },
-
   }));
-
 }
 
 const { article } = Astro.props;
 const { Content, headings } = await render(article);
 
-const readingTime =
-  getReadingTime(article.body ?? "");
+const readingTime = getReadingTime(article.body ?? "");
 
-const { previous, next } =
-  await getAdjacentArticles(article.id);
-
-const relatedArticles =
-  await getRelatedArticles(article);
+const { previous, next } = await getAdjacentArticles(article.id);
+const relatedArticles = await getRelatedArticles(article);
 
 const articleSchema = JSON.stringify({
-
   "@context": "https://schema.org",
-
   "@type": "Article",
-
   headline: article.data.title,
-
   description: article.data.description,
-
   author: {
-
     "@type": "Person",
-
     name: "Krishna Pal",
-
   },
-
   publisher: {
-
     "@type": "Organization",
-
     name: "Krishna's Knowledge Journal",
-
   },
-
-  datePublished:
-    article.data.publishDate.toISOString(),
-
+  datePublished: article.data.publishDate.toISOString(),
   mainEntityOfPage: {
     "@type": "WebPage",
     "@id": Astro.url.href,
   },
-
 });
 ---
 
@@ -95,30 +69,28 @@ const articleSchema = JSON.stringify({
   type="article"
   schema={articleSchema}
 >
-
   <ReadingProgress />
 
   <article class="article-page container">
-
     <Breadcrumbs
       category={article.data.category}
       title={article.data.title}
     />
 
     <header class="article-header">
-    {
-  article.data.featuredImage && (
-    <div class="article-featured-image">
-      <Image
-        src={article.data.featuredImage}
-        alt={article.data.title}
-        widths={[800, 1200, 1600]}
-        sizes="100vw"
-        loading="eager"
-      />
-    </div>
-  )
-}
+      {
+        article.data.featuredImage && (
+          <div class="article-featured-image">
+            <Image
+              src={article.data.featuredImage}
+              alt={article.data.title}
+              widths={[800, 1200, 1600]}
+              sizes="100vw"
+              loading="eager"
+            />
+          </div>
+        )
+      }
 
       <p class="article-category">
         {article.data.category}
@@ -135,136 +107,101 @@ const articleSchema = JSON.stringify({
       <FontControls />
 
       <div class="article-meta">
-
-  <span>{article.data.author}</span>
-
-  {" • "}
-
-  <time datetime={article.data.publishDate.toISOString()}>
-    {article.data.publishDate.toLocaleDateString()}
-  </time>
-
-  {
-  article.data.updatedDate &&
-  article.data.editorialStatus === "major" && (
-    <>
-      {" • "}
-      Updated {article.data.updatedDate.toLocaleDateString()}
-    </>
-  )
-}
-
-  {" • "}
-
-  {readingTime}
-
-  {" • "}
-
-  <CopyLink />
-
-</div>
-
-    </header>
-
-    <div class="article-layout">
-
-      <TableOfContents
-        headings={headings}
-      />
-
-      <div>
-
-        <div class="article-content">
-
-          {
-    article.data.editorialStatus === "retraction" && (
-      <div class="editorial-notice">
-        <strong>Editorial Notice</strong>
-
-        <p>{article.data.updateReason}</p>
-      </div>
-    )
-  }
-
-  <Content />
-
-
-        </div>
-
-        <nav class="article-navigation">
-
-          {
-            previous ? (
-
-              <a
-                href={`/articles/${previous.id}/`}
-                class="article-nav-card"
-              >
-
-                <small>← Previous</small>
-
-                <strong>
-
-                  {previous.data.title}
-
-                </strong>
-
-              </a>
-
-            ) : <div></div>
-          }
-
-          {
-            next ? (
-
-              <a
-                href={`/articles/${next.id}/`}
-                class="article-nav-card"
-              >
-
-                <small>Next →</small>
-
-                <strong>
-
-                  {next.data.title}
-
-                </strong>
-
-              </a>
-
-            ) : <div></div>
-          }
-
-        </nav>
+        <span>{article.data.author}</span>
+        {" • "}
+        <time datetime={article.data.publishDate.toISOString()}>
+          {article.data.publishDate.toLocaleDateString()}
+        </time>
 
         {
-          relatedArticles.length > 0 && (
-
-            <section class="related-articles">
-
-              <h2>Related Articles</h2>
-
-              <div class="pillar-grid">
-
-                {relatedArticles.map((related) => (
-
-                  <ArticleCard
-                    article={related}
-                  />
-
-                ))}
-
-              </div>
-
-            </section>
-
+          article.data.updatedDate &&
+          article.data.editorialStatus === "major" && (
+            <>
+              {" • "}
+              Updated {article.data.updatedDate.toLocaleDateString()}
+            </>
           )
         }
 
+        {" • "}
+        {readingTime}
+        {" • "}
+        <CopyLink />
       </div>
+    </header>
 
+    <div class="article-layout">
+      {
+        article.data.editorialStatus !== "retraction" && (
+          <TableOfContents headings={headings} />
+        )
+      }
+
+      <div>
+        <div class="article-content">
+          {
+            article.data.editorialStatus === "major" && (
+              <div class="editorial-notice editorial-major">
+                <strong>Major Update</strong>
+                <p>{article.data.updateReason}</p>
+              </div>
+            )
+          }
+
+          {
+            article.data.editorialStatus === "retraction" && (
+              <div class="editorial-notice editorial-retraction">
+                <strong>Article Retracted</strong>
+                <p>{article.data.updateReason}</p>
+              </div>
+            )
+          }
+
+          {
+            article.data.editorialStatus !== "retraction" && (
+              <Content />
+            )
+          }
+        </div>
+
+        {
+          article.data.editorialStatus !== "retraction" && (
+            <nav class="article-navigation">
+              {previous ? (
+                <a href={`/articles/${previous.id}/`} class="article-nav-card">
+                  <small>← Previous</small>
+                  <strong>{previous.data.title}</strong>
+                </a>
+              ) : (
+                <div />
+              )}
+
+              {next ? (
+                <a href={`/articles/${next.id}/`} class="article-nav-card">
+                  <small>Next →</small>
+                  <strong>{next.data.title}</strong>
+                </a>
+              ) : (
+                <div />
+              )}
+            </nav>
+          )
+        }
+
+        {
+          article.data.editorialStatus !== "retraction" &&
+          relatedArticles.length > 0 && (
+            <section class="related-articles">
+              <h2>You might like</h2>
+              <div class="pillar-grid">
+                {relatedArticles.map((related) => (
+                  <ArticleCard article={related} />
+                ))}
+              </div>
+            </section>
+          )
+        }
+      </div>
     </div>
-
   </article>
-
 </BaseLayout>
