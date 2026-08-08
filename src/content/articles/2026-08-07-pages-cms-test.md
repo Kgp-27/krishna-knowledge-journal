@@ -11,7 +11,7 @@ featuredImage: ../../assets/articles/Screenshot 2026-08-06 221018.png
 publishDate: 2026-08-07
 updatedDate: 2026-08-07
 editorialStatus: minor
-updateReason: nothing
+updateReason: nothinghhhhhhhh
 featured: true
 draft: false
 ---
