@@ -480,6 +480,32 @@ li {
   color: var(--color-text);
   line-height: 1.7;
 }
+.featured-article-card .article-card {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  height: auto;
+}
+
+.featured-article-card .article-image {
+  height: 100%;
+  min-height: 260px;
+}
+
+.featured-article-card .article-card header {
+  padding: var(--space-6) var(--space-6) 0;
+}
+
+@media (max-width: 768px) {
+  .featured-article-card .article-card {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-article-card .article-image {
+    height: 220px;
+    min-height: 0;
+  }
+}
+
 /* ==========================================
    10. Tags
 ========================================== */

@@ -14,7 +14,7 @@ const featuredArticle =
 
 const latestArticles =
   (await getLatestArticles());
-  
+
 ---
 
 <BaseLayout
@@ -30,11 +30,11 @@ const latestArticles =
       title="Featured Article"
       description="Editor's featured publication."
     >
-
+      <div class="featured-article-card">
       <ArticleCard
         article={featuredArticle}
       />
-
+      </div>
     </Section>
 
   )
