@@ -1412,3 +1412,119 @@ li {
     align-self: center;
   }
 }
+.support-link {
+  color: #b42318;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.support-link:hover {
+  color: var(--color-primary);
+}
+/* ==========================================
+   21. Search Page
+========================================== */
+
+.search-page {
+  padding-bottom: var(--space-9);
+}
+
+
+.search-box {
+  max-width: 760px;
+  margin: 0 auto var(--space-7);
+}
+
+
+.search-box label {
+  display: block;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+
+#search-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--fs-400);
+  outline: none;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+
+#search-input::placeholder {
+  color: var(--color-text-light);
+}
+
+
+#search-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(197, 148, 46, 0.15);
+}
+
+
+.search-help {
+  margin-top: var(--space-2);
+  font-size: var(--fs-300);
+  color: var(--color-text-light);
+}
+
+
+.search-status {
+  max-width: 760px;
+  margin: 0 auto var(--space-5);
+  font-size: var(--fs-300);
+  color: var(--color-text-light);
+}
+
+
+#search-results {
+  width: 100%;
+}
+
+
+.search-empty {
+  grid-column: 1 / -1;
+  padding: var(--space-7);
+  text-align: center;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+
+.search-empty h2 {
+  margin-bottom: var(--space-2);
+  color: var(--color-primary);
+}
+
+
+.search-empty p {
+  margin: 0;
+  color: var(--color-text-light);
+}
+
+
+@media (max-width: 768px) {
+
+  .search-box {
+    max-width: 100%;
+  }
+
+  #search-input {
+    font-size: 1rem;
+  }
+
+}

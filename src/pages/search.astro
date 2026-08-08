@@ -2,100 +2,123 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Search | Krishna's Knowledge Journal">
+<BaseLayout
+  title="Search | Krishna's Knowledge Journal"
+  description="Search across all published articles in Krishna's Knowledge Journal."
+>
 
-<section class="section">
-
-  <div class="container">
+  <section class="section search-page">
 
     <header class="section-header">
-
       <h1>Search</h1>
 
       <p class="section-description">
         Search across all published articles.
       </p>
-
     </header>
 
-    <input
-      id="search-input"
-      type="search"
-      placeholder="Search articles..."
-      autocomplete="off"
-    />
+    <div class="search-box">
+      <label for="search-input">Search articles</label>
 
-    <div id="search-results"></div>
+      <input
+        id="search-input"
+        type="search"
+        placeholder="Search by title, topic, or keyword..."
+        autocomplete="off"
+        aria-describedby="search-help"
+      />
 
-  </div>
+      <p id="search-help" class="search-help">
+        Start typing to search the journal.
+      </p>
+    </div>
 
-</section>
+    <div id="search-status" class="search-status" aria-live="polite"></div>
 
-<script type="module">
-  import MiniSearch from "minisearch";
+    <div id="search-results" class="article-grid"></div>
 
-  const response = await fetch("/search.json");
-  const json = await response.json();
+  </section>
 
-  const miniSearch = MiniSearch.loadJS(json, {
-    fields: [
-      "title",
-      "description",
-      "category",
-      "tags",
-      "body",
-    ],
-    storeFields: [
-      "title",
-      "description",
-      "category",
-      "url",
-    ],
-  });
+  <script type="module">
+    import MiniSearch from "minisearch";
 
-  const input =
-    document.getElementById("search-input");
+    const response = await fetch("/search.json");
+    const json = await response.json();
 
-  const results =
-    document.getElementById("search-results");
+    const miniSearch = MiniSearch.loadJS(json, {
+      fields: [
+        "title",
+        "description",
+        "category",
+        "tags",
+        "body",
+      ],
+      storeFields: [
+        "title",
+        "description",
+        "category",
+        "url",
+      ],
+    });
 
-  input?.addEventListener("input", () => {
+    const input =
+      document.getElementById("search-input");
 
-    const query = input.value.trim();
+    const results =
+      document.getElementById("search-results");
 
-    if (!query) {
+    const status =
+      document.getElementById("search-status");
 
-      results.innerHTML = "";
+    input?.addEventListener("input", () => {
 
-      return;
+      const query = input.value.trim();
 
-    }
+      if (!query) {
+        results.innerHTML = "";
+        status.textContent = "";
+        return;
+      }
 
-    const matches = miniSearch.search(query);
+      const matches = miniSearch.search(query);
 
-    results.innerHTML = matches.length
-      ? matches.map(result => `
-        <article class="article-card">
-          <header>
-            <h3>
-              <a href="${result.url}">
-                ${result.title}
-              </a>
-            </h3>
+      status.textContent =
+        matches.length === 1
+          ? "1 article found"
+          : `${matches.length} articles found`;
 
-            <p class="article-meta">
-              ${result.category}
-            </p>
-          </header>
+      results.innerHTML = matches.length
+        ? matches.map(result => `
+            <article class="article-card">
 
-          <p>
-            ${result.description}
-          </p>
-        </article>
-      `).join("")
-      : "<p>No matching articles found.</p>";
+              <header>
+                <h3>
+                  <a href="${result.url}">
+                    ${result.title}
+                  </a>
+                </h3>
 
-  });
-</script>
+                <p class="article-meta">
+                  ${result.category}
+                </p>
+              </header>
+
+              <p>
+                ${result.description}
+              </p>
+
+            </article>
+          `).join("")
+        : `
+            <div class="search-empty">
+              <h2>No matching articles found</h2>
+              <p>
+                Try a different keyword, topic, or article title.
+              </p>
+            </div>
+          `;
+
+    });
+  </script>
 
 </BaseLayout>
