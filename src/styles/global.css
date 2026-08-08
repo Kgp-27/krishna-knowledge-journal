@@ -405,9 +405,8 @@ li {
 
 .article-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
-  justify-content: center;
-  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: var(--space-8);
 }
 
 .article-card {
@@ -419,10 +418,11 @@ li {
   overflow: hidden;
   box-shadow: var(--shadow-sm);
   transition: var(--transition);
+  height: 100%;
 }
 
 .article-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px);
   border-color: var(--color-accent);
   box-shadow: var(--shadow-lg);
 }
@@ -430,7 +430,8 @@ li {
 .article-image {
   display: block;
   overflow: hidden;
-  aspect-ratio: 16 / 9;
+  height: 220px;
+  aspect-ratio: auto;
 }
 
 .article-image img {
@@ -442,15 +443,15 @@ li {
 }
 
 .article-card:hover .article-image img {
-  transform: scale(1.04);
+  transform: scale(1.05);
 }
 
 .article-card header {
-  padding: var(--space-4) var(--space-5) 0;
+  padding: var(--space-6) var(--space-6) 0;
 }
 
 .article-card h3 {
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-3);
   line-height: 1.3;
 }
 
@@ -466,18 +467,18 @@ li {
 .article-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: .4rem;
+  gap: .5rem;
   align-items: center;
   font-size: var(--fs-300);
   color: var(--color-text-light);
-  margin-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
 }
 
 .article-card > p {
-  padding: 0 var(--space-5);
+  padding: 0 var(--space-6);
   flex-grow: 1;
   color: var(--color-text);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 /* ==========================================
    10. Tags
