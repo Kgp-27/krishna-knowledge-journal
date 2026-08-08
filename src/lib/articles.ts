@@ -109,13 +109,16 @@ export async function getRelatedArticles(
         score += 10;
       }
 
-      score +=
+      const sharedTags =
         article.data.tags.filter((tag) =>
           current.data.tags.includes(tag)
-        ).length * 2;
+        );
+
+      score += sharedTags.length * 2;
 
       return { article, score };
     })
+    .filter((item) => item.score > 0)
     .sort((a, b) =>
       b.score !== a.score
         ? b.score - a.score

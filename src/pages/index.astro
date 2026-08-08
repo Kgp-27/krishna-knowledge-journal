@@ -13,9 +13,8 @@ const featuredArticle =
   await getHomepageHero();
 
 const latestArticles =
-  (await getLatestArticles()).filter(
-    (article) => article.id !== featuredArticle?.id
-  );
+  (await getLatestArticles());
+  
 ---
 
 <BaseLayout
