@@ -48,12 +48,14 @@ content:
       - name: publishDate
         label: Publish Date
         type: date
-        foramt: "dd-MM-yyyy"
+        options:
+          foramt: "dd-MM-yyyy"
 
       - name: updatedDate
         label: Updated Date
         type: date
-        foramt: "dd-MM-yyyy"
+        options:
+          foramt: "dd-MM-yyyy"
         
       - name: editorialStatus
         label: Editorial Status

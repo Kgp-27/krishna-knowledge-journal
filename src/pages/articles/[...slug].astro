@@ -110,7 +110,7 @@ const articleSchema = JSON.stringify({
         <span>{article.data.author}</span>
         {" • "}
         <time datetime={article.data.publishDate.toISOString()}>
-          {article.data.publishDate.toLocaleDateString()}
+          {article.data.publishDate.toLocaleDateString("en-GB").replace(/\//g, "-")}
         </time>
 
         {
@@ -118,7 +118,7 @@ const articleSchema = JSON.stringify({
           article.data.editorialStatus === "major" && (
             <>
               {" • "}
-              Updated {article.data.updatedDate.toLocaleDateString()}
+              Updated {article.data.updatedDate.toLocaleDateString("en-GB").replace(/\//g, "-")}
             </>
           )
         }
