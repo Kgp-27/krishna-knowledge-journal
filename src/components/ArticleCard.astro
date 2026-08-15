@@ -47,7 +47,7 @@ const readingTime = getReadingTime(article.body ?? "");
 
   {" • "}
 
-  {article.data.publishDate.toLocaleDateString()}
+  {article.data.publishDate.toLocaleDateString("en-GB").replace(/\//g, "-")}
 
   {" • "}
 
