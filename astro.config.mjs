@@ -6,6 +6,8 @@ import markdoc from "@astrojs/markdoc";
 
 export default defineConfig({
   site: "https://theknowledgejournal.com",
+  
+  trailingSlash: "always",
 
   output: "server",
 
