@@ -25,7 +25,6 @@ I am going to explain how money launderers use the Indian stock market, but befo
   2. Lack of Transparency (Hiding the true owner or beneficiary).
   3. Lack of Effective Information Exchange (With foreign regulators or tax authorities).
   4. No Substantial Activity Requirement (Entities can register and benefit from the tax regime without needing a physical office, staff, or actual commercial operations within the jurisdiction).
-
 - **DTAA (Double Taxation Avoidance Agreement):** Just as its name suggests, this is a bilateral financial treaty signed between two countries to prevent the same income from being taxed twice. Countries sign them to attract investment, increase the ease of doing business, and resolve disputes.
 
 ## **The Anomalies**
@@ -57,9 +56,7 @@ There are **primarily two reasons** for this:
 Major international organizations like the Tax Justice Network (TJN), Oxfam International, and the International Consortium of Investigative Journalists (ICIJ) all consider Mauritius a tax haven. Historically, Mauritius was considered a full tax haven. Following international pressure, they introduced some reforms so that inter-governmental bodies would no longer classify them as such. However, they did just enough to satisfy the requirements without compromising their attractiveness as a shield from tax liabilities.
 
 - **Favorable Tax Rates & Exemptions:** While Mauritius has a standard corporate tax rate of 15%, specialized offshore companies can utilize exemptions that drive their effective tax rate down to 3%. Furthermore, Mauritius levies no capital gains tax and no withholding tax on dividends paid to non-residents.
-
 - **Shell Companies with No Substance:** The "Mauritius Leaks" revealed that many entities registered in the country exist purely on paper. Corporations exploit this by paying artificial royalties, interest, or service fees to their Mauritian subsidiaries, artificially lowering their taxable income in their home countries.
-
 - **Financial Privacy:** The country offers strict financial privacy, such as Category 1 Foreign Portfolio Investor status, which allows the ultimate beneficial owners of investing entities to remain legally undisclosed to the public.
 
 ### **2. The Power of DTAAs**
@@ -67,16 +64,12 @@ Major international organizations like the Tax Justice Network (TJN), Oxfam Inte
 Mauritius currently has 45 active operational treaties in force. Seven are awaiting ratification, seven are awaiting signature, and 19 are under negotiation. DTAAs generally eliminate double taxation through three primary methods:
 
 - **Tax Exemption:** One country completely gives up its right to tax a specific type of income, leaving it to be taxed solely by the other country.
-
 - **Tax Credit:** The income is taxed in the source country first. Then, the resident country allows the taxpayer to deduct that paid amount from their domestic tax bill.
-
 - **Lowered Withholding Rates:** The treaty sets capped, preferential tax rates for cross-border payments like dividends, interest, and royalties.
 
 India also has a DTAA with Mauritius. That is how Mauritius became a launchpad for investment in India. Foreign investors started preferring Mauritius for the Indian financial market, and this flow of capital created an entire ecosystem for investment expertise. This is exactly where money launderers started taking advantage of the system.
 
 Mauritius has historically been a focal point for global financial flows due to its low-tax regime and ease of doing business. However, these same features made it an attractive transit point for money laundering.  
-  
-
 
 ## **Old Methods**
 
@@ -109,5 +102,3 @@ After the FATF crackdown, methods have evolved, and Mauritius is no longer the e
 
 Maybe next time we will talk about how Bollywood helps in money laundering. Till then, bye!
 
-  
-  
