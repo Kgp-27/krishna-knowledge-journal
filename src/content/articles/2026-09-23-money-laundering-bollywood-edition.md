@@ -24,7 +24,7 @@ Just a few days before on 31st July 1997 a film director Rajiv Rai was also atta
 
 All of these were for extortion money, but not only for that they also wanted to cast certain people, wanted musical rights or distribution rights. The connection between the Underworld and Bollywood goes to the roots. This is why I am writing this blog as a third part for my money laundering series.
 
- 
+
 
 ## **The Original Sin**
 
@@ -38,13 +38,13 @@ Enter **Varadarajan Mudaliar** aka Varda Bhai. He started as a porter at the Mum
 
 These gangsters used to be respectful to each other and avoid confrontation in business. They had a gentlemen's agreement among themselves. That is why, there was not much of gang war in the decades of 50s, 60s and 70s. When nephews of **Karim Lala** inherited Pathan gang from him, they introduced gun culture in underworld. But it was **Dawood Ibrahim** and his D company which took it to contract killers, advanced weapons and ruthlessly rose to the top by thrashing earlier “gentlemen agreements”, even expanded his business to Dubai. **Abu Salem** was also part of the D company.
 
- 
+
 
 ## **Marriage of Convenience**
 
 Filmmaking was officially granted ‘Industry Status’ in India in the year 1998. Following the 1998 declaration, the Reserve Bank of India (RBI) established guidelines in **2001** enabling commercial banks to formally finance film production. Before 1998, Indian filmmakers could not secure standard corporate or bank loans to fund movies. This left producers heavily reliant on private moneylenders and, notoriously during the 1980s and 1990s, the underworld or mafia for funding. However, it was **Haji Mastan** who took this opportunity first. He even cultivated close friendships with top stars like Dilip Kumar and Raj Kapoor.
 
-It was a co-dependent relationship. Mobsters used movies to launder their black money and to satisfy their fascination with movie stars. In return, struggling producers got the funds they needed, though this relationship always left the underworld in control. ****                                 
+It was a co-dependent relationship. Mobsters used movies to launder their black money and to satisfy their fascination with movie stars. In return, struggling producers got the funds they needed, though this relationship always left the underworld in control.                               
 
  In 1995, Salem met struggling actress Monica Bedi. She claimed to initially believe he was a Pakistani businessman named "Arsalan Ali." She leveraged this relationship to escape a toxic producer and gain roles in films like *Jodi No.1*, allegedly secured through Salem's violent threats to producers. Actor Sanjay Dutt was convicted for possession of weapons which were linked to Mumbai blast masterminds, even it was said that the car which carried blast material was parked in his home few days before it. Though Mr. Dutt claimed he acquired them for his family's safety during the riots.
 
@@ -54,7 +54,7 @@ You must be thinking huh! Informal industry was the main problem. After liquor p
 
 Actually no. It is true with opening up of the economy a lot of illegal smuggling is gone but a few are still left, like gold (As depending upon the situation Indian government increase or decrease custom duty on it). But surely a lot of clean up did happen. A lot of gangsters fled, struggled financially in old businesses moved to something new or just died. But the dirty money problem is far from over for **Bollywood**.
 
- 
+
 
 ## **Bullets to Balance Sheets**
 
@@ -76,7 +76,7 @@ Another question for you. Do you think only gangsters have need to launder their
 
 I am not going to delve into jargons, instead with simple relatable examples I will try to explain it to you.
 
-### **First scenario:** 
+### **First scenario:**
 
 You are a big producer (Just imagine for a second). You earned quite a lot with your box office hit this year. Now you are worried a lot of taxes you have to pay and you refused to do that. Then your accountant came up with a plan **“Making a flop movie”**. Your accountant came up with a lot of ideas, you accepted all.
 
@@ -92,25 +92,23 @@ The movie turned out to be a big disaster at box office, butt of jokes and meme 
 
 And if you don’t believe me that all of this happens then for your information, in 2013, a raid on Ekta Kapoor's Balaji Telefilms found payments made to entirely fictional writers and crew members, fake people with real bills.
 
- 
 
-### **Second Scenario:** 
+
+### **Second Scenario:**
 
 This time imagine yourself as a businessman. You have a lot of black money; you fear tax raids and not able to spend your hard-earned black money (Here you can also imagine yourself as corrupt politician or Real estate Mogul or anything else).  If you read my previous article what I am going to state now, will be much easier to understand so please read that.
 
 You set up a shell company in a **tax haven**. Through that you produce a movie. In return, you get the distribution rights. But investment in movie comes as an ad-hoc loan, or fake loan from other sources but you get real rights in your official name. Now no matter how good or bad this movie does in domestic market, you can always get inflated numbers for the overseas, in result get your money back as return in investment due to good performance in overseas market. Hurray! Job done. Black money successfully turned into White.
 
-If you don’t believe me then believe the Income tax department. Mythri Movie (Malayalam movie but story in Bollywood ) makers were raided for receiving ₹700 crores via hawala channels. Untaxed money (black money) is introduced into the production company disguised as "ad-hoc loans" under bogus names, or routed through hawala networks. In a 2012 Cobrapost sting, prominent figures like producer Vashu Bhagnani and director Anubhav Sinha were caught on hidden camera casually explaining how they accept black money to fund films.
+If you don’t believe me then believe the Income tax department. Mythri Movie (Malayalam movie but same story in Bollywood ) makers were raided for receiving ₹700 crores via hawala channels. Untaxed money (black money) is introduced into the production company disguised as "ad-hoc loans" under bogus names, or routed through hawala networks. In a 2012 Cobrapost sting, prominent figures like producer Vashu Bhagnani and director Anubhav Sinha were caught on hidden camera casually explaining how they accept black money to fund films.
 
 2016 and 2021 global leaks revealed that major stars like Amitabh Bachchan, Ajay Devgn, Aishwarya Rai, and Jackie Shroff held offshore shell companies and trust funds linked to Swiss banks, though investigations often hit dead ends due to tax haven secrecy laws.
 
-**** 
-
-###  **The Real Victims**
+### **The Real Victims**
 
 The ultimate tragedy highlighted in this series is who pays the price. In the 1990s, the victims were producers and directors losing their lives. Today, the victims are the working-class members of the film industry. While producers use inflated budgets to launder money and actors take massive upfront fees to help inflate those numbers on paper, the actual light men, stunt coordinators, and editors are often left unpaid when the production house inevitably declares bankruptcy or a massive loss (as seen recently with Pooja Entertainment).
 
- 
+
 
 ## **Conclusion**
 
@@ -122,8 +120,8 @@ Do you think only movies and stock market do this? What about religious institut
 
 See you next time. Till then Bye!
 
- 
 
- 
 
- 
+&nbsp;
+
+&nbsp;
