@@ -12,7 +12,7 @@ tags:
   - Bollywood
 publishDate: 2026-09-23
 updatedDate: 2026-09-23
-editorialStatus: none
+editorialStatus: minor
 featured: true
 draft: false
 ---
@@ -114,7 +114,7 @@ The ultimate tragedy highlighted in this series is who pays the price. In the 19
 
 The next time you see a ₹300-crore cinematic disaster unfold on screen, remember: you might be watching a terrible movie, but you are witnessing a brilliant financial transaction. It is a possibility that your favourite movie also did this and your favourite movie star too.
 
-Please read my previous blogs for deeper understanding.
+[Please read my](https://theknowledgejournal.com/articles/2026-09-09-money-laundering-indian-stock-market-edition/) previous blogs for [deeper understanding](https://theknowledgejournal.com/articles/how-does-money-laundering-actually-work/).
 
 Do you think only movies and stock market do this? What about religious institutions? Do they….?
 
