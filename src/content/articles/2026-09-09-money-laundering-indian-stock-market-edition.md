@@ -8,6 +8,7 @@ tags:
   - Finance
   - Black money
   - Stock market
+featuredImage: ../../assets/articles/Featured image.jpg
 publishDate: 2026-09-09
 updatedDate: 2026-09-09
 editorialStatus: none
