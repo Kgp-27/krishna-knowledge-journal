@@ -12,6 +12,7 @@ tags:
 featuredImage: ../../assets/articles/Credit card.jpg
 publishDate: 2026-10-01
 updatedDate: 2026-10-01
+editorialStatus: minor
 featured: true
 draft: false
 ---
