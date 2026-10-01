@@ -23,7 +23,7 @@ That got me thinking: how do credit cards actually work? I am going to share wha
 
 A responsible credit card user collects their points, redeeming them for airport lounge access, discounted movie tickets, online shopping deals, or even transferring them to an airline loyalty program to fly first class for free. But who is paying for the luxury of a timely payer? In your mind, the answer must be the people who do not pay their bills on time.
 
- 
+
 
 ### **Hidden fees**
 
@@ -33,7 +33,7 @@ Always remember: if a massive financial institution appears to be giving away fr
 
 In reality, these companies make money off every single transaction made by the user. While interest revenue is massive, it misses the true cash cow of modern finance: Interchange Fees (Swipe Fees). Let’s understand how this works.
 
- 
+
 
 ### **The Process**
 
@@ -45,7 +45,7 @@ As a result, merchants bake the cost of credit card processing into the base pri
 
 This means if you pay with cash, cheque, direct bank transfer, or a debit card, you are still paying for those credit card charges. It functions as a massive, regressive transfer of wealth from lower-income cash users to wealthy rewards maximisers.
 
- 
+
 
 ### **Technical Structure**
 
@@ -55,7 +55,7 @@ Upon approval, the credit committee issues a PDC (Pre-Disbursement Certificate) 
 
 When a card is swiped or tapped, an authorization executes in fractions of a second across distinct entities: the merchant’s bank, the customer’s bank, and the card payment or interchange network.
 
- 
+
 
 ### **Conclusion**
 
@@ -63,4 +63,3 @@ Back to our story, what actually happened is that this particular business owner
 
 This is the end for today. Next time, I will be back with a new topic. Until then, bye!
 
- 
