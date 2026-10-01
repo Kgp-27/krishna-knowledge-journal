@@ -23,8 +23,6 @@ That got me thinking: how do credit cards actually work? I am going to share wha
 
 A responsible credit card user collects their points, redeeming them for airport lounge access, discounted movie tickets, online shopping deals, or even transferring them to an airline loyalty program to fly first class for free. But who is paying for the luxury of a timely payer? In your mind, the answer must be the people who do not pay their bills on time.
 
-
-
 ### **Hidden fees**
 
 That seems like a great answer, because credit card companies charge late payment fines and substantially high-interest rates if you do not pay on time. But there is a huge catch here. Is this enough to sustain a massive corporation? Just transferring the cost of rewards to those being punished with fees? It doesn’t seem like a foolproof business plan, because if the balance ever tilted and there were more "good" payers than "bad" payers, the whole system would crumble.
@@ -32,8 +30,6 @@ That seems like a great answer, because credit card companies charge late paymen
 Always remember: if a massive financial institution appears to be giving away free money, the First Law of Corporate Generosity applies—someone else is quietly footing the bill.
 
 In reality, these companies make money off every single transaction made by the user. While interest revenue is massive, it misses the true cash cow of modern finance: Interchange Fees (Swipe Fees). Let’s understand how this works.
-
-
 
 ### **The Process**
 
@@ -44,8 +40,6 @@ Why don't merchants just pass these high fees directly to the people using premi
 As a result, merchants bake the cost of credit card processing into the base price of all their goods. They estimate how many credit card transactions might happen, average out the charge percentages, and include that cost in their standard sticker prices.
 
 This means if you pay with cash, cheque, direct bank transfer, or a debit card, you are still paying for those credit card charges. It functions as a massive, regressive transfer of wealth from lower-income cash users to wealthy rewards maximisers.
-
-
 
 ### **Technical Structure**
 
