@@ -16,7 +16,9 @@ updatedDate: 2026-10-11
 featured: true
 draft: false
 ---
-When you think of the world’s wealthiest and most powerful entities, you likely picture multinational mega-corporations like Coca-Cola, Disney, Apple, or Microsoft. You envision sprawling corporate campuses, armies of financial analysts, and ruthless hedge fund managers plotting their next market conquest. What you likely do not picture is a religious institution. Yet, quietly operating alongside these titans of industry is an entity with an estimated $293 billion (29 lakh crore Indian rupees which is nearly half of Indian government’s annual budget) fortune: The Church of Jesus Christ of Latter-day Saints (LDS Church).
+When you think of the world’s wealthiest and most powerful entities, you likely picture multinational mega-corporations like Coca-Cola, Disney, Apple, or Microsoft. You envision sprawling corporate campuses, armies of financial analysts, and ruthless hedge fund managers plotting their next market conquest. What you likely do not picture is a religious institution.
+
+ Yet, quietly operating alongside these titans of industry is an entity with an estimated $293 billion (29 lakh crore Indian rupees which is nearly half of Indian government’s annual budget) fortune: The Church of Jesus Christ of Latter-day Saints (LDS Church).
 
 For decades, the Mormon Church has operated less like a traditional charity and more like a highly efficient, endlessly liquid sovereign wealth fund. Through a masterful combination of corporate restructuring, psychological conditioning, and aggressive financial strategy, a 19th-century polygamist pioneer movement has transformed itself into a hyper-Americanized, tightly controlled global religion with an investment portfolio that dwarfs the GDP of many nations.
 
@@ -30,7 +32,7 @@ But the true financial pivot occurred when the Church began drafting high-powere
 
 Leadership utilized spreadsheets, data auditing, and centralized branding to maintain global consistency. This standardization was born out of the "Correlation" movement in the 1960s, a widespread crackdown meant to centralize the hierarchy and end progressive theological debate. Every lesson, song, and architectural design was standardized so that a congregation in Peru received the exact same messaging as one in Utah. By merging divine mandate with modern corporate strategy, the Church built a scalable, centralized machine perfectly designed to maximize the financial yield of its followers.
 
-**** 
+
 
 ## **The Price of Salvation: Free Labor and the 10% income**
 
