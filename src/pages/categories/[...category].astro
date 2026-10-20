@@ -9,9 +9,7 @@ export async function getStaticPaths() {
   const categories = await getAllCategories();
 
   return categories.map((category) => ({
-    params: {
-      category: category.toLowerCase(),
-    },
+    params: { category: category.toLowerCase().replace(/\s+/g, "-") },
     props: {
       category,
     },

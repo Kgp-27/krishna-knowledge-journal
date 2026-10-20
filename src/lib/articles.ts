@@ -1,3 +1,4 @@
+
 import { getCollection, type CollectionEntry } from "astro:content";
 
 export type Article = CollectionEntry<"articles">;
@@ -16,8 +17,8 @@ function isPublished(article: Article) {
 export async function getPublishedArticles() {
   const articles = await getAllArticles();
 
-return articles
-  .filter(isPublished)
+  return articles
+    .filter(isPublished)
     .sort(
       (a, b) =>
         b.data.publishDate.getTime() -
@@ -54,8 +55,7 @@ export async function getFeaturedArticles(limit = 3) {
 export async function getHomepageHero() {
   const featured = await getFeaturedArticles(1);
 
-    return featured[0] ?? null;
-
+  return featured[0] ?? null;
 }
 
 export async function getArticlesByCategory(category: string) {
@@ -76,12 +76,12 @@ export async function getArticlesByTag(tag: string) {
 
 export async function getAllCategories() {
   return [
-    ...new Set(
-      (await getPublishedArticles()).map(
-        (article) => article.data.category
-      )
-    ),
-  ].sort();
+    "Economics",
+    "Finance",
+    "History",
+    "Indian Banking",
+    "Taxation",
+  ];
 }
 
 export async function getAllTags() {
@@ -103,16 +103,13 @@ export async function getRelatedArticles(
     .map((article) => {
       let score = 0;
 
-      if (
-        article.data.category === current.data.category
-      ) {
+      if (article.data.category === current.data.category) {
         score += 10;
       }
 
-      const sharedTags =
-        article.data.tags.filter((tag) =>
-          current.data.tags.includes(tag)
-        );
+      const sharedTags = article.data.tags.filter((tag) =>
+        current.data.tags.includes(tag)
+      );
 
       score += sharedTags.length * 2;
 
