@@ -1,5 +1,5 @@
 ---
-title: How does credit cards actually work?
+title: How do credit cards actually work?
 description: Why do some local shopkeepers refuse to accept credit cards or
   demand an extra 2%? The answer reveals a massive hidden fee system in modern
   finance. Here is the surprising truth about how credit cards actually work.
