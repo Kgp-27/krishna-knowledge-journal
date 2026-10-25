@@ -1,18 +1,21 @@
-
 subjectLinks:
   - title: Finance
     href: /categories/finance/
-
   - title: Economics
     href: /categories/economics/
-
   - title: Indian Banking
     href: /categories/indian-banking/
-
   - title: Taxation
     href: /categories/taxation/
-
   - title: History
     href: /categories/history/
-
-collections: []
+  - {}
+collections:
+  - title: Money Laundering
+    description: Detailed three part series which explores money laundering, global
+      trade and its connection with different parts of the world
+    visible: true
+    articles:
+      - src/content/articles/How-does-money-laundering-actually-work.md
+      - src/content/articles/2026-09-09-money-laundering-indian-stock-market-edition.md
+      - src/content/articles/2026-09-23-money-laundering-bollywood-edition.md
