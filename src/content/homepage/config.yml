@@ -15,6 +15,7 @@ collections:
     description: Detailed three part series which explores money laundering, global
       trade and its connection with different parts of the world
     visible: true
+    featured: true
     articles:
       - src/content/articles/How-does-money-laundering-actually-work.md
       - src/content/articles/2026-09-09-money-laundering-indian-stock-market-edition.md
@@ -23,6 +24,7 @@ collections:
     description: In this i explored the origins to tobacco from a ritual substance
       to most addictive habbit of modern humans.
     visible: true
+    featured: false
     articles:
       - src/content/articles/2026-10-13-empire-of-smokes-the-dawn-of-tobacco.md
       - src/content/articles/2026-10-13-empire-of-smokes-the-century-of-humiliation.md
@@ -31,6 +33,7 @@ collections:
     description: Fascinating world of middle class illusion and powerful algo
       traders. And what happens when they clash.
     visible: true
+    featured: false
     articles:
       - src/content/articles/2026-10-13-how-an-american-firm-exploited-indian-retail-investors-part-1.md
       - src/content/articles/2026-10-13-how-an-american-firm-exploited-indian-retail-investors-part-2.md
