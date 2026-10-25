@@ -129,6 +129,10 @@ content:
             label: Show on Homepage
             type: boolean
 
+          - name: featured
+            label: Featured Series
+            type: boolean
+
           - name: articles
             label: Articles in Display Order
             type: reference

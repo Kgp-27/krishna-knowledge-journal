@@ -25,9 +25,9 @@ function normalizeReference(value: unknown): string {
 
   return value
     .replace(/\\/g, '/')
-    .replace(/^.*\/content\/articles\//, '')
-    .replace(/^.*\/articles\//, '')
-    .replace(/\.md$/, '')
+    .replace(/^.*\/content\/articles\//i, '')
+    .replace(/^.*\/articles\//i, '')
+    .replace(/\.md$/i, '')
     .replace(/^\/+|\/+$/g, '')
     .trim()
     .toLowerCase();
@@ -53,6 +53,8 @@ function resolveArticle(reference: unknown) {
     .map(normalizeReference)
     .filter(Boolean);
 
+  if (references.length === 0) return undefined;
+
   return publishedArticles.find((article) => {
     const id = normalizeReference(article.id);
     const title = normalizeReference(article.data.title);
@@ -68,17 +70,24 @@ function resolveArticle(reference: unknown) {
 }
 
 const visibleSeries = (homepageConfig.collections ?? [])
-  .filter((collection: any) => collection.visible)
-  .map((collection: any) => ({
-    ...collection,
-    articles: (collection.articles ?? [])
+  .filter((series: any) => series.visible)
+  .map((series: any) => ({
+    ...series,
+    articles: (series.articles ?? [])
       .map(resolveArticle)
       .filter((article: any) => article !== undefined),
-  }))
-  .filter((collection: any) => collection.articles.length > 0);
+  }));
 
-const featuredSeries = visibleSeries[0];
-const allSeries = visibleSeries.slice(1);
+// Use the explicitly selected series. Fall back to the first visible series.
+const featuredIndex = Math.max(
+  0,
+  visibleSeries.findIndex((series: any) => series.featured)
+);
+
+const featuredSeries = visibleSeries[featuredIndex];
+const allSeries = visibleSeries.filter(
+  (_series: any, index: number) => index !== featuredIndex
+);
 
 const subjectDescriptions: Record<string, string> = {
   Finance: 'Money, investing, corporate finance and financial markets.',
@@ -112,7 +121,7 @@ const subjectDescriptions: Record<string, string> = {
     description="Explore the five permanent disciplines that form the foundation of Krishna's Knowledge Journal."
   >
     <div class="pillar-grid">
-      {homepageConfig.subjectLinks.map((subject: any) => (
+      {(homepageConfig.subjectLinks ?? []).map((subject: any) => (
         <PillarCard
           title={subject.title}
           description={
@@ -130,30 +139,76 @@ const subjectDescriptions: Record<string, string> = {
       title="Featured Series"
       description={featuredSeries.description ?? ''}
     >
-      <div class="pillar-grid">
-        {featuredSeries.articles.map((article: any) => (
-          <ArticleCard article={article} />
-        ))}
-      </div>
+      <h3 class="series-featured-title">{featuredSeries.title}</h3>
+
+      {featuredSeries.articles.length > 0 ? (
+        <div class="pillar-grid">
+          {featuredSeries.articles.map((article: any) => (
+            <ArticleCard article={article} />
+          ))}
+        </div>
+      ) : (
+        <p>Articles for this series have not been selected yet.</p>
+      )}
     </Section>
   )}
 
   {allSeries.length > 0 && (
     <Section
       title="All Series"
-      description="Explore the other curated article series."
+      description="Explore other series. Select a title to view its articles."
     >
-      {allSeries.map((series: any) => (
-        <div class="series-group">
-          <h3>{series.title}</h3>
-          {series.description && <p>{series.description}</p>}
-          <div class="pillar-grid">
-            {series.articles.map((article: any) => (
-              <ArticleCard article={article} />
-            ))}
-          </div>
+      <div id="series-list" class="series-list">
+        {allSeries.map((series: any, index: number) => (
+          <details
+            class="series-accordion"
+            data-series-item
+            open={false}
+            hidden={index >= 5}
+          >
+            <summary>
+              <span class="series-summary-text">
+                <span class="series-summary-title">{series.title}</span>
+                <span class="series-summary-count">
+                  {series.articles.length}
+                  {series.articles.length === 1 ? ' article' : ' articles'}
+                </span>
+              </span>
+              <span class="series-chevron" aria-hidden="true">⌄</span>
+            </summary>
+
+            <div class="series-accordion-content">
+              {series.description && <p>{series.description}</p>}
+
+              {series.articles.length > 0 ? (
+                <div class="pillar-grid">
+                  {series.articles.map((article: any) => (
+                    <ArticleCard article={article} />
+                  ))}
+                </div>
+              ) : (
+                <p>
+                  Articles for this series have not been selected yet.
+                </p>
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      {allSeries.length > 5 && (
+        <div class="series-pagination">
+          <button id="series-view-more" type="button">
+            View All Series
+          </button>
+          <button id="series-show-less" type="button" hidden>
+            Show Less
+          </button>
+          <p id="series-count" aria-live="polite">
+            Showing 5 of {allSeries.length} series
+          </p>
         </div>
-      ))}
+      )}
     </Section>
   )}
 
@@ -171,4 +226,157 @@ const subjectDescriptions: Record<string, string> = {
       <p>No articles have been published yet.</p>
     )}
   </Section>
+
+  <style>
+    .series-featured-title {
+      margin: 0 0 1.25rem;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.25;
+    }
+
+    .series-list {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .series-accordion {
+      border: 1px solid var(--color-border, #e1e5e8);
+      border-radius: 12px;
+      background: var(--color-background, #fff);
+      overflow: hidden;
+    }
+
+    .series-accordion[hidden] {
+      display: none !important;
+    }
+
+    .series-accordion summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.1rem 1.25rem;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .series-accordion summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .series-summary-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      min-width: 0;
+    }
+
+    .series-summary-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .series-summary-count {
+      color: var(--color-muted, #667085);
+      font-size: 0.9rem;
+    }
+
+    .series-chevron {
+      font-size: 1.5rem;
+      transition: transform 160ms ease;
+    }
+
+    .series-accordion[open] .series-chevron {
+      transform: rotate(180deg);
+    }
+
+    .series-accordion-content {
+      padding: 0 1.25rem 1.25rem;
+    }
+
+    .series-pagination {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .series-pagination button {
+      border: 1px solid var(--color-border, #d0d5dd);
+      border-radius: 8px;
+      padding: 0.7rem 1rem;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .series-pagination button:hover {
+      background: var(--color-surface, #f3f4f6);
+    }
+
+    .series-pagination button[hidden] {
+      display: none !important;
+    }
+
+    .series-pagination p {
+      flex-basis: 100%;
+      margin: 0;
+      color: var(--color-muted, #667085);
+      font-size: 0.9rem;
+    }
+  </style>
+
+  <script>
+    const seriesItems = Array.from(
+      document.querySelectorAll<HTMLDetailsElement>('[data-series-item]')
+    );
+
+    const viewMoreButton = document.querySelector<HTMLButtonElement>(
+      '#series-view-more'
+    );
+    const showLessButton = document.querySelector<HTMLButtonElement>(
+      '#series-show-less'
+    );
+    const seriesCount = document.querySelector<HTMLElement>('#series-count');
+
+    const pageSize = 5;
+    let visibleCount = Math.min(pageSize, seriesItems.length);
+
+    function updateSeriesList() {
+      seriesItems.forEach((item, index) => {
+        item.hidden = index >= visibleCount;
+      });
+
+      if (seriesCount) {
+        seriesCount.textContent =
+          `Showing ${visibleCount} of ${seriesItems.length} series`;
+      }
+
+      if (viewMoreButton) {
+        viewMoreButton.hidden = visibleCount >= seriesItems.length;
+      }
+
+      if (showLessButton) {
+        showLessButton.hidden = visibleCount <= pageSize;
+      }
+    }
+
+    viewMoreButton?.addEventListener('click', () => {
+      visibleCount = Math.min(
+        visibleCount + pageSize,
+        seriesItems.length
+      );
+      updateSeriesList();
+    });
+
+    showLessButton?.addEventListener('click', () => {
+      visibleCount = Math.min(pageSize, seriesItems.length);
+      updateSeriesList();
+    });
+
+    updateSeriesList();
+  </script>
 </BaseLayout>
