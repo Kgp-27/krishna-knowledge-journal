@@ -1,80 +1,89 @@
+
 ---
+import { parse } from 'yaml';
+import homepageConfigText from '../content/homepage/config.yml?raw';
+
+const homepageConfig = parse(homepageConfigText);
+
 import {
   getHomepageHero,
   getLatestArticles,
-} from "../lib/articles";
+  getPublishedArticles,
+} from '../lib/articles';
 
-import BaseLayout from "../layouts/BaseLayout.astro";
-import ArticleCard from "../components/ArticleCard.astro";
-import Hero from "../components/Hero.astro";
-import Section from "../components/Section.astro";
-import PillarCard from "../components/PillarCard.astro";
-const featuredArticle =
-  await getHomepageHero();
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import PillarCard from '../components/PillarCard.astro';
 
-const latestArticles =
-  (await getLatestArticles());
+const featuredArticle = await getHomepageHero();
+const latestArticles = await getLatestArticles();
+const publishedArticles = await getPublishedArticles();
 
+const curatedCollections = (homepageConfig.collections ?? [])
+  .filter((collection) => collection.visible)
+  .map((collection) => ({
+    ...collection,
+    articles: (collection.articles ?? [])
+      .map((reference) => {
+        const articleId =
+          typeof reference === 'string'
+            ? reference
+            : reference?.path ?? reference?.value ?? reference?.id;
+
+        return publishedArticles.find(
+          (article) =>
+            article.id === articleId ||
+            article.id.replace(/\.md$/, '') === articleId
+        );
+      })
+      .filter((article) => article !== undefined),
+  }))
+  .filter((collection) => collection.articles.length > 0);
+
+const subjectDescriptions: Record<string, string> = {
+  Finance: 'Money, investing, corporate finance and financial markets.',
+  Economics: 'Microeconomics, macroeconomics and economic thought.',
+  'Indian Banking':
+    'The Reserve Bank of India, commercial banking, regulation and monetary systems.',
+  Taxation: 'Direct taxation, indirect taxation and public finance.',
+  History: 'Economic history, financial history and institutional development.',
+};
 ---
 
 <BaseLayout
   title="Krishna's Knowledge Journal"
   description="Finance, Economics, Indian Banking, Taxation and History explained from first principles."
 >
-
   <Hero />
-  {
-  featuredArticle && (
 
+  {featuredArticle && (
     <Section
       title="Featured Article"
       description="Editor's featured publication."
     >
       <div class="featured-article-card">
-      <ArticleCard
-        article={featuredArticle}
-      />
+        <ArticleCard article={featuredArticle} />
       </div>
     </Section>
-
-  )
-}
-
+  )}
 
   <Section
     title="Explore the Library"
     description="Explore the five permanent disciplines that form the foundation of Krishna's Knowledge Journal."
   >
     <div class="pillar-grid">
-      <PillarCard
-        title="Finance"
-        description="Money, investing, corporate finance and financial markets."
-        href="/categories/finance/"
-      />
-
-      <PillarCard
-        title="Economics"
-        description="Microeconomics, macroeconomics and economic thought."
-        href="/categories/economics/"
-      />
-
-      <PillarCard
-        title="Indian Banking"
-        description="The Reserve Bank of India, commercial banking, regulation and monetary systems."
-        href="/categories/indian-banking/"
-      />
-
-      <PillarCard
-        title="Taxation"
-        description="Direct taxation, indirect taxation and public finance."
-        href="/categories/taxation/"
-      />
-
-      <PillarCard
-        title="History"
-        description="Economic history, financial history and institutional development."
-        href="/categories/history/"
-      />
+      {homepageConfig.subjectLinks.map((subject) => (
+        <PillarCard
+          title={subject.title}
+          description={
+            subjectDescriptions[subject.title] ??
+            `Explore articles about ${subject.title}.`
+          }
+          href={subject.href}
+        />
+      ))}
     </div>
   </Section>
 
@@ -82,28 +91,27 @@ const latestArticles =
     title="Latest Articles"
     description="The latest publications from Krishna's Knowledge Journal."
   >
-
-    {
-      latestArticles.length > 0 ? (
-
-        <div class="pillar-grid">
+    {latestArticles.length > 0 ? (
+      <div class="pillar-grid">
         {latestArticles.map((article) => (
-
-  <ArticleCard
-    article={article}
-  />
-
-))}
-
-        </div>
-
-      ) : (
-
-        <p>No articles have been published yet.</p>
-
-      )
-    }
-
+          <ArticleCard article={article} />
+        ))}
+      </div>
+    ) : (
+      <p>No articles have been published yet.</p>
+    )}
   </Section>
 
+  {curatedCollections.map((collection) => (
+    <Section
+      title={collection.title}
+      description={collection.description ?? ''}
+    >
+      <div class="pillar-grid">
+        {collection.articles.map((article) => (
+          <ArticleCard article={article} />
+        ))}
+      </div>
+    </Section>
+  ))}
 </BaseLayout>
