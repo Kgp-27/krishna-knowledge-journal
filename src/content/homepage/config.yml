@@ -31,3 +31,6 @@ collections:
     description: Fascinating world of middle class illusion and powerful algo
       traders. And what happens when they clash.
     visible: true
+    articles:
+      - src/content/articles/2026-10-13-how-an-american-firm-exploited-indian-retail-investors-part-1.md
+      - src/content/articles/2026-10-13-how-an-american-firm-exploited-indian-retail-investors-part-2.md
