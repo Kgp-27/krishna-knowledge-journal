@@ -1,9 +1,6 @@
-
 ---
 import { parse } from 'yaml';
 import homepageConfigText from '../content/homepage/config.yml?raw';
-
-const homepageConfig = parse(homepageConfigText);
 
 import {
   getHomepageHero,
@@ -17,30 +14,71 @@ import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import PillarCard from '../components/PillarCard.astro';
 
+const homepageConfig = parse(homepageConfigText);
+
 const featuredArticle = await getHomepageHero();
 const latestArticles = await getLatestArticles();
 const publishedArticles = await getPublishedArticles();
 
-const curatedCollections = (homepageConfig.collections ?? [])
-  .filter((collection) => collection.visible)
-  .map((collection) => ({
+function normalizeReference(value: unknown): string {
+  if (typeof value !== 'string') return '';
+
+  return value
+    .replace(/\\/g, '/')
+    .replace(/^.*\/content\/articles\//, '')
+    .replace(/^.*\/articles\//, '')
+    .replace(/\.md$/, '')
+    .replace(/^\/+|\/+$/g, '')
+    .trim()
+    .toLowerCase();
+}
+
+function resolveArticle(reference: unknown) {
+  const values =
+    typeof reference === 'string'
+      ? [reference]
+      : reference && typeof reference === 'object'
+        ? [
+            (reference as any).path,
+            (reference as any).value,
+            (reference as any).id,
+            (reference as any).slug,
+            (reference as any).title,
+            (reference as any).label,
+          ]
+        : [];
+
+  const references = values
+    .filter((value): value is string => typeof value === 'string')
+    .map(normalizeReference)
+    .filter(Boolean);
+
+  return publishedArticles.find((article) => {
+    const id = normalizeReference(article.id);
+    const title = normalizeReference(article.data.title);
+
+    return references.some(
+      (reference) =>
+        reference === id ||
+        reference.endsWith(`/${id}`) ||
+        id.endsWith(`/${reference}`) ||
+        reference === title
+    );
+  });
+}
+
+const visibleSeries = (homepageConfig.collections ?? [])
+  .filter((collection: any) => collection.visible)
+  .map((collection: any) => ({
     ...collection,
     articles: (collection.articles ?? [])
-      .map((reference) => {
-        const articleId =
-          typeof reference === 'string'
-            ? reference
-            : reference?.path ?? reference?.value ?? reference?.id;
-
-        return publishedArticles.find(
-          (article) =>
-            article.id === articleId ||
-            article.id.replace(/\.md$/, '') === articleId
-        );
-      })
-      .filter((article) => article !== undefined),
+      .map(resolveArticle)
+      .filter((article: any) => article !== undefined),
   }))
-  .filter((collection) => collection.articles.length > 0);
+  .filter((collection: any) => collection.articles.length > 0);
+
+const featuredSeries = visibleSeries[0];
+const allSeries = visibleSeries.slice(1);
 
 const subjectDescriptions: Record<string, string> = {
   Finance: 'Money, investing, corporate finance and financial markets.',
@@ -74,7 +112,7 @@ const subjectDescriptions: Record<string, string> = {
     description="Explore the five permanent disciplines that form the foundation of Krishna's Knowledge Journal."
   >
     <div class="pillar-grid">
-      {homepageConfig.subjectLinks.map((subject) => (
+      {homepageConfig.subjectLinks.map((subject: any) => (
         <PillarCard
           title={subject.title}
           description={
@@ -86,6 +124,38 @@ const subjectDescriptions: Record<string, string> = {
       ))}
     </div>
   </Section>
+
+  {featuredSeries && (
+    <Section
+      title="Featured Series"
+      description={featuredSeries.description ?? ''}
+    >
+      <div class="pillar-grid">
+        {featuredSeries.articles.map((article: any) => (
+          <ArticleCard article={article} />
+        ))}
+      </div>
+    </Section>
+  )}
+
+  {allSeries.length > 0 && (
+    <Section
+      title="All Series"
+      description="Explore the other curated article series."
+    >
+      {allSeries.map((series: any) => (
+        <div class="series-group">
+          <h3>{series.title}</h3>
+          {series.description && <p>{series.description}</p>}
+          <div class="pillar-grid">
+            {series.articles.map((article: any) => (
+              <ArticleCard article={article} />
+            ))}
+          </div>
+        </div>
+      ))}
+    </Section>
+  )}
 
   <Section
     title="Latest Articles"
@@ -101,17 +171,4 @@ const subjectDescriptions: Record<string, string> = {
       <p>No articles have been published yet.</p>
     )}
   </Section>
-
-  {curatedCollections.map((collection) => (
-    <Section
-      title={collection.title}
-      description={collection.description ?? ''}
-    >
-      <div class="pillar-grid">
-        {collection.articles.map((article) => (
-          <ArticleCard article={article} />
-        ))}
-      </div>
-    </Section>
-  ))}
 </BaseLayout>
