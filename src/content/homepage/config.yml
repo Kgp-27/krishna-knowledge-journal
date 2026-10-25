@@ -27,3 +27,7 @@ collections:
       - src/content/articles/2026-10-13-empire-of-smokes-the-dawn-of-tobacco.md
       - src/content/articles/2026-10-13-empire-of-smokes-the-century-of-humiliation.md
       - src/content/articles/2026-10-13-how-big-tobacco-hacked-the-human-mind.md
+  - title: Jane Street case
+    description: Fascinating world of middle class illusion and powerful algo
+      traders. And what happens when they clash.
+    visible: true
