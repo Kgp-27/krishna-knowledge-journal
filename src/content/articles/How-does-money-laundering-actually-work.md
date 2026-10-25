@@ -1,18 +1,18 @@
 ---
 title: How does money laundering actually work?
-description: How can millions move across borders without money crossing them? Understanding Hawala and Flying Money from first principles.
+description: How can millions move across borders without money crossing them?
+  Understanding Hawala and Flying Money from first principles.
 author: Krishna Pal
 category: Finance
 tags:
   - Black Money
   - Finance
   - Global trade
-
-
+featuredImage: ../../assets/articles/first artcile.jpg
 publishDate: 2026-08-05
+updatedDate: 2026-10-25
 featured: false
 draft: false
-
 ---
 # Introduction
 
@@ -22,7 +22,7 @@ Meet Mr. Xi, who is from Shanghai, China. His son lives in New York City, USA, f
 
 This is a huge bottleneck for Mr. Xi. Enter something called “Flying money (飞钱)”, a Chinese term for informal money transfer, also known as Hawala, Havaleh, Hundi, Undiyal, Phoeichuan in different geographies and different cultures.
 
-## Mechanism 
+## Mechanism
 
 Let’s focus on how it actually works. Mr. Xi contacts Broker A and gives him $ 1 million equivalent in Chinese Yuan. In return, Broker A gives a code to Mr. Xi. By providing this code to Broker B in New York, his son gets the $1 million. Broker A and B are in the same network. 
 
